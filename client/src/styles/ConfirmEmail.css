@@ -1,0 +1,16 @@
+.confirm-email-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.confirm-email-header {
+  display: inline-block;
+  margin-top: 2rem;
+  text-wrap: balance;
+  margin-bottom: 2rem;
+}
+.confirm-email-message {
+  width: 75%;
+  display: flex;
+  text-align: justify;
+}

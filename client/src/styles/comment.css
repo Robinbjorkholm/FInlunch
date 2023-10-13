@@ -1,0 +1,99 @@
+.create-comment {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: center;
+}
+
+.comment-text-area {
+  resize: none;
+  width: 75%;
+  min-height: 3rem;
+  text-indent: 0.5rem;
+}
+.comment-button-error {
+  display: flex;
+  flex-direction: column;
+  height: 3.5rem;
+}
+
+.comment-post-button {
+  width: 50%;
+}
+
+.commment-section {
+  height: 10rem;
+}
+.comment-invalid-error-message {
+  font-size: 0.7rem;
+  color: red;
+  display: none;
+}
+
+.comment-invalid-error-message:before {
+  font-size: 1rem;
+  color: red;
+}
+.comment-post-button {
+  opacity: 1;
+  border: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 2rem;
+}
+.comment-post-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.comment-post-button:hover:disabled + .comment-invalid-error-message {
+  display: inline;
+}
+
+.comment {
+  list-style: none;
+  margin-top: 1rem;
+  background-color: rgb(242, 242, 242);
+  width: 75%;
+  border-radius: 3px;
+  overflow-wrap: break-word;
+}
+.comment:last-child {
+  margin-bottom: 1rem;
+}
+.comment-username {
+  font-weight: bold;
+  text-indent: 0.5rem;
+  font-size: 1rem;
+}
+.comment-comment {
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+  padding-bottom: 1rem;
+}
+.comment-username-date-created-separator {
+  color: rgb(160, 160, 160);
+}
+.comment-date-created {
+  font-size: 0.8rem;
+}
+.comment-user {
+  display: flex;
+  align-items: center;
+}
+.comment-user-admin {
+  color: Red;
+  font-size: 0.8rem;
+  padding-left:0.3rem;
+}
+
+.comment-delete-button {
+  background: none;
+  border: none;
+  margin-left: auto;
+  margin-right: 0.5rem;
+  padding-top: 0.1rem;
+}
+.comment-delete-button:hover {
+  cursor: pointer;
+}

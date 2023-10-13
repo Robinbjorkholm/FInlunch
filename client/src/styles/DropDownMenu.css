@@ -1,0 +1,37 @@
+.drop-down-menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: fit-content;
+  width: fit-content;
+  min-width: 7rem;
+  right: 0;
+  top: 2rem;
+  border: 1px solid #969696;
+  border-radius: 3px;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+}
+#drop-down-menu-username {
+  padding: 0.5rem;
+  font-size: 1.1rem;
+}
+#drop-down-menu-logout {
+  display: flex;
+  background: none;
+  border: none;
+  align-items: center;
+  vertical-align: middle;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+}
+#drop-down-menu-logout:last-child {
+  margin-bottom: 0.5rem;
+}
+#drop-down-menu-logout:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+#drop-down-menu-logout-text {
+  font-size: 1rem;
+}

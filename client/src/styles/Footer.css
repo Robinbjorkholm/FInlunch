@@ -1,0 +1,22 @@
+.footer-div {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  bottom: 0;
+  background-color: rgb(252, 181, 77);
+  height: 1rem;
+  font-size: 12px;
+}
+
+@media (max-width: 35em) {
+  .footer-div {
+    height: 2rem;
+    flex-direction: column;
+    line-height: 1rem;
+  }
+  .footer-h3 {
+    font-size: 11px;
+  }
+}

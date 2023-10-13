@@ -1,0 +1,245 @@
+.food-display {
+  position: relative;
+  height: auto;
+  padding-top: 16vh;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 3rem;
+}
+.food-display-find-food {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
+}
+.div-option-grid-flex {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  right: 35%;
+  padding-top: 0.4rem;
+}
+.div-option-grid-flex:hover {
+  cursor: pointer;
+}
+#search-form {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  width: 20rem;
+  height: 2.2rem;
+  border: 1px solid #969696;
+  border-radius: 25px;
+}
+
+#search-bar {
+  width: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  text-decoration: none;
+  outline: none;
+  position: relative;
+  align-items: center;
+  text-indent: 1rem;
+  border: none;
+  border-radius: 25px;
+}
+
+#search-form:focus-within {
+  border: 1px solid black;
+}
+
+.food-items-flex {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+.food-items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+  column-gap: -12rem;
+}
+
+.map-food-items-closed {
+  margin-top: 1rem;
+  height: 22rem;
+  border-radius: 9px;
+  background-color: rgb(255, 255, 255);
+  width: 50%;
+  min-width: 30.5rem;
+  max-width: 47rem;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  color: #333;
+  box-shadow: 2px 4px 10px 2px hsl(0deg 0% 0% / 0.38);
+}
+.map-food-items-open {
+  margin-top: 1rem;
+  border-radius: 25px;
+  background-color: rgb(255, 255, 255);
+  width: 50%;
+  min-width: 30.5rem;
+  max-width: 47rem;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  color: #333;
+  box-shadow: 2px 4px 10px 2px hsl(0deg 0% 0% / 0.38);
+}
+.ul-food-items-info {
+  display: flex;
+  height: 10rem;
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 18px;
+}
+.ul-food-items :nth-child(3) {
+  margin-bottom: 0.5rem;
+}
+.food-header {
+  overflow-wrap: break-word;
+  height: 4rem;
+  line-height: 1.8rem;
+  padding-top: 0.5rem;
+  font-size: 3rem;
+}
+.img-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 20rem;
+}
+#food-img {
+  border-radius: 9px;
+  width: 90%;
+  height: 16rem;
+  min-width: 14rem;
+}
+.li-icon-info-div {
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+}
+.food-info {
+  width: 50%;
+}
+#food-description-box {
+  width: 80%;
+  min-width: 12rem;
+  height: 100%;
+  min-height: 4.5rem;
+  border-radius: 3px;
+  border: 1px solid #333;
+}
+#food-description-box-text {
+  padding: 0.2rem;
+  overflow-wrap: break-word;
+}
+
+#open-food-form {
+  position: fixed;
+  left: 28rem;
+}
+.delete-food-button {
+  background-color: rgb(255, 0, 0, 0.7);
+  border: 0px;
+  color: white;
+  font-size: 3rem;
+  height: 3rem;
+  width: 3rem;
+  line-height: 3rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  text-align: center;
+}
+.delete-food-button:hover {
+  transition: 0.6s;
+  background-color: rgb(255, 0, 0);
+  cursor: pointer;
+  box-shadow: 0 0px 25px rgb(255, 0, 0);
+}
+
+.rating {
+  display: flex;
+  padding-left: 0.3rem;
+}
+
+.star-container {
+  margin: -0.5rem;
+}
+#food-rating-mobile {
+  margin-left: -0.6rem;
+  z-index: 1;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.div-comments {
+  padding-top: 6rem;
+  display: flex;
+  align-items: space-between;
+  vertical-align: middle;
+}
+
+.div-comments .comments-amount {
+  font-weight: bold;
+  font-size: 1.5rem;
+  border: 0px;
+  background: none;
+}
+.show-comments {
+  font-weight: bold;
+  font-size: 1rem;
+  border: 0px;
+  background: none;
+  margin-bottom: 1rem;
+}
+
+.show-comments:hover {
+  cursor: pointer;
+}
+
+.comments-show {
+  vertical-align: middle;
+}
+
+.comments-hide {
+  vertical-align: middle;
+}
+@media (max-width: 66.5em) {
+  .ul-food-items {
+    margin-bottom: 5rem;
+  }
+  .map-food-items-closed {
+    height: fit-content;
+  }
+}
+@media (max-width: 37.4375em) {
+  #food-rating-mobile {
+    margin-left: -1.2rem;
+    margin-top: 0.1rem;
+  }
+}
+
+@media (max-width: 31.25em) {
+  .img-div {
+    padding-right: 0.9rem;
+  }
+  .map-food-items-closed {
+    width: 98%;
+  }
+}

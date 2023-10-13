@@ -1,0 +1,8 @@
+.Popup-modal {
+  height: 10rem;
+  background-color: red;
+  width: 10rem;
+  z-index: 1;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+}
