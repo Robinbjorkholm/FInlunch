@@ -50,7 +50,12 @@ function CreateAccount() {
 
   return (
     <div>
-      <Hero />
+      <div className="hero">
+        <a href="/" className="finlunch-banner">
+          FinLunch
+        </a>
+      </div>
+
       <div className="user-page">
         <div className="user-div">
           <div className="login-header-div">

@@ -110,15 +110,15 @@ function Comments({
               <div key={comment.id} className="comment">
                 <ul className="comment-user">
                   <li className="comment-username">{comment.username}</li>
+                  {comment.admin ? null : (
+                    <li className="comment-user-admin"> CEO </li>
+                  )}
                   <li className="comment-username-date-created-separator">
                     &nbsp;&#x2022;&nbsp;
                   </li>
                   <li className="comment-date-created">
                     {calculateCommentAge(comment.createdAt)}
                   </li>
-                  {comment.admin ? null : (
-                    <li className="comment-user-admin"> Admin </li>
-                  )}
 
                   {UserId === comment.UserId || admin === true ? (
                     <button

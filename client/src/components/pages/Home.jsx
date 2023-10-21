@@ -15,6 +15,7 @@ function Home({
   const [selectedFoodType, setSelectedFoodType] = useState("");
   const [descending, setDescending] = useState(false);
   const [ascending, setAscending] = useState(false);
+  const [mobileFilteringActive, setmobileFilteringActive] = useState(false);
   //toggle Descending sorting
   const handleDescending = () => {
     setAscending(false);
@@ -33,9 +34,24 @@ function Home({
   const isMobileNavigation = useMediaQuery({
     query: "(min-width: 1101px ",
   });
+  const handleToggleMobileMenu = () => {
+    console.log("adsfhjiudsiofguhhdsiolufhju");
+    setmobileFilteringActive(!mobileFilteringActive);
+  };
+
+  const closeMobileMenu = () => {
+    setmobileFilteringActive(false);
+  };
   return (
     <div>
-      <Hero logout={logout} user={user} isMobile={isMobile} />
+      <Hero
+        logout={logout}
+        user={user}
+        isMobile={isMobile}
+        isMobileNavigation={isMobileNavigation}
+        mobileFilteringActive={mobileFilteringActive}
+        handleToggleMobileMenu={handleToggleMobileMenu}
+      />
       <FoodDisplay
         userLocationLng={userLocationLng}
         userLocationLat={userLocationLat}
@@ -47,6 +63,7 @@ function Home({
         ascending={ascending}
       />
       <Filtering
+        closeMobileMenu={closeMobileMenu}
         handleDescending={handleDescending}
         descending={descending}
         ascending={ascending}
@@ -54,6 +71,8 @@ function Home({
         setSelectedFoodType={setSelectedFoodType}
         user={user}
         isMobileNavigation={isMobileNavigation}
+        mobileFilteringActive={mobileFilteringActive}
+        handleToggleMobileMenu={handleToggleMobileMenu}
       />
       <Footer />
     </div>

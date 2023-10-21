@@ -163,16 +163,11 @@ class Filtering extends Component {
     this.setState({ foodTypes: newFoodTypes });
     deleteFoodType(foodType.id);
   };
-  handleToggleMobileMenu = () => {
-    this.setState({ mobileFilteringActive: true });
-  };
 
   //close mobile navigation
   handleClickOutside(event) {
     if (this.outsideRef && !this.outsideRef.current.contains(event.target)) {
-      this.setState({
-        mobileFilteringActive: false,
-      });
+      this.props.closeMobileMenu();
     }
   }
   render() {
@@ -183,40 +178,30 @@ class Filtering extends Component {
       <React.Fragment>
         <div
           className={
-            !this.state.mobileFilteringActive ? "filtering" : "filtering-mobile"
+            !this.props.mobileFilteringActive ? "filtering" : "filtering-mobile"
           }
         >
           <ul
             className={
-              this.state.mobileFilteringActive
+              this.props.mobileFilteringActive
                 ? "filter-food-mobile-active"
                 : "filter-food"
             }
             ref={this.outsideRef}
           >
-            <li>
-              {this.props.isMobileNavigation ? null : !this.state
-                  .mobileFilteringActive ? (
-                <RxDoubleArrowRight
-                  className="open-mobile-filter"
-                  size={40}
-                  onClick={() => this.handleToggleMobileMenu()}
-                />
-              ) : null}
-            </li>
             {this.props.isMobileNavigation ||
-            this.state.mobileFilteringActive ? (
+            this.props.mobileFilteringActive ? (
               <p className="filter-option-foodtype">Filter </p>
             ) : null}
 
-            <div className="test">
+            <div className="filter-div-map">
               {this.state.foodTypes
                 ? this.state.foodTypes.map((food, id) => {
                     return (
                       <ul
                         key={id}
                         className={
-                          this.state.mobileFilteringActive
+                          this.props.mobileFilteringActive
                             ? "filter-food-items-mobile"
                             : "filter-food-items"
                         }
@@ -257,11 +242,11 @@ class Filtering extends Component {
                 : null}
             </div>
             {this.props.isMobileNavigation ||
-            this.state.mobileFilteringActive ? (
+            this.props.mobileFilteringActive ? (
               <p className="filter-option-rating">Order by</p>
             ) : null}
             {this.props.isMobileNavigation ||
-            this.state.mobileFilteringActive ? (
+            this.props.mobileFilteringActive ? (
               <div className="div-filter-rating-text-arrow">
                 <button
                   className={
@@ -302,7 +287,7 @@ class Filtering extends Component {
 
         <div
           className={`filtering-dark-background ${
-            this.state.mobileFilteringActive ? "show" : ""
+            this.props.mobileFilteringActive ? "show" : ""
           }`}
         />
       </React.Fragment>

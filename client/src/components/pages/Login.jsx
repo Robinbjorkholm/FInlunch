@@ -4,6 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Hero from "../Hero";
 import * as yup from "yup";
 import loginUser from "../Api/loginUser";
+import FoodDisplay from "../FoodDisplay";
+
 import "../../styles/LoginSignup.css";
 
 const loginSchema = yup.object().shape({
@@ -36,7 +38,12 @@ function Login() {
 
   return (
     <div>
-    <Hero/>
+      <div className="hero">
+        <a href="/" className="finlunch-banner">
+          FinLunch
+        </a>
+      </div>
+
       <div className="user-page">
         <div className="user-div">
           <div className="login-header-div">

@@ -2,21 +2,36 @@ import React, { useState } from "react";
 import "../styles/Hero.css";
 import DropDownMenu from "./DropDownMenu";
 import { FaUserAlt } from "react-icons/fa";
+import { GiHamburgerMenu } from "react-icons/gi";
+
 import finlunchbanner from "../images/finlunchbanner.png";
 
-export default function Hero({ logout, user, isMobile }) {
+export default function Hero({
+  logout,
+  user,
+  isMobile,
+  handleToggleMobileMenu,
+  isMobileNavigation,
+}) {
   const [userMenu, setuserMenu] = useState(false);
 
   return (
     <div className="hero">
-        <a href="/" className="finlunch-banner">
-          FinLunch
-        </a>
+      {!isMobileNavigation ? (
+        <GiHamburgerMenu
+          size={24}
+          className="mobile-hamburger-filter-menu"
+          onClick={() => handleToggleMobileMenu()}
+        />
+      ) : null}
 
+      <a href="/" className="finlunch-banner">
+        FinLunch
+      </a>
       {!user ? (
-        <span className="login">
-          <a href="/Login">Login</a>
-        </span>
+        <a className="login" href="/Login">
+          Login
+        </a>
       ) : (
         <span className="login">
           {!isMobile ? (

@@ -60,7 +60,7 @@
   background-color: rgba(233, 233, 233, 1);
   white-space: nowrap;
 }
-.test {
+.filter-div-map {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,6 +76,7 @@
   margin-bottom: 1rem;
   text-decoration: underline;
 }
+
 #food-type {
   padding: 1rem;
   font-size: 1rem;

@@ -5,7 +5,6 @@ import "../../styles/LoginSignup.css";
 import "../../styles/ConfirmEmail.css";
 
 function ConfirmEmail() {
-
   return (
     <div>
       <Hero />

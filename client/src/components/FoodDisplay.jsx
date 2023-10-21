@@ -26,11 +26,12 @@ class FoodDisplay extends Component {
         foodAddress: "Otto Malmsgatan 16, 68600 Jakobstad",
         foodCost: "14.90",
         foodCostMeal: "",
-        foodDescription: "texas monster dsadsd dsaadsdasdasdas",
+        foodDescription:
+          "texas monster dsadsd dsaadhlkjjjjjjjjjjjjjjjjjjhjklklklklklklklklklklklklklklsdasdasdas",
         foodImage: "images\\1694466075470.jpg",
         foodName: "texas monster",
         foodRating: 5,
-        foodType: "pizza",
+        foodType: "pizzdddddddddddddddddddddddddddddddda",
         id: 1,
         updatedAt: "2023-09-11T21:01:15.000Z",
       },
@@ -93,7 +94,7 @@ class FoodDisplay extends Component {
         foodCostMeal: "143.90",
         foodDescription: "asdadsadsdsa",
         foodImage: "images\\1694466075470.jpg",
-        foodName: "asddadsdasdas",
+        foodName: "asddadsdasdadsadsadsadsadsadsas",
         foodRating: 5,
         foodType: "Kebab",
         id: 6,
@@ -118,10 +119,19 @@ class FoodDisplay extends Component {
     ShowComments: false,
     ShowCommentsById: null,
     FoodTypesDisplay: [],
-    Comments: [],
+    Comments: [
+      {
+        User: { username: "osheezero", id: 1 },
+        UserId: 1,
+        comment: "fdsafsdfsd",
+        createdAt: "2023-10-18T13:34:30.000Z",
+        foodId: 1,
+        id: 1,
+        updatedAt: "2023-10-18T13:34:30.000Z",
+        username: "osheezero",
+      },
+    ],
     Likes: [],
-    Mobile: false,
-    Width: window.innerWidth,
     NumberStars: 5,
     StarDimension: 28,
     GridLayout: false,
@@ -143,14 +153,7 @@ class FoodDisplay extends Component {
     this.resize();
   }*/
   //resize window for number of stars to fit mobile
-  resize() {
-    this.setState({ Width: window.innerWidth });
-    if (this.state.Width >= 312) {
-      this.setState({ NumberStars: 5, Mobile: false, StarDimension: 28 });
-    } else {
-      this.setState({ NumberStars: 1, Mobile: true, StarDimension: 48 });
-    }
-  }
+
   //open new food form
   toggleNewFoodForm = () => {
     this.setState({ FoodFormOpen: !this.state.FoodFormOpen });
@@ -309,22 +312,15 @@ class FoodDisplay extends Component {
               })
                 .sort((a, b) => {
                   if (this.props.descending === true) {
-                    return a.foodRating < b.foodrating ? -1 : 1;
+                    return a.foodRating < b.foodRating ? -1 : 1;
                   } else if (this.props.ascending === true) {
-                    return a.foodRating < b.foodrating ? 1 : -1;
+                    return a.foodRating < b.foodRating ? 1 : -1;
                   }
                 })
                 .map((food) => {
                   const showComments = food.id === this.state.ShowCommentsById;
                   return (
-                    <div
-                      className={
-                        !showComments
-                          ? "map-food-items-closed"
-                          : "map-food-items-open"
-                      }
-                      key={food.id}
-                    >
+                    <div className="map-food-items" key={food.id}>
                       {admin && (
                         <button
                           className="delete-food-button"
@@ -333,36 +329,40 @@ class FoodDisplay extends Component {
                           &times;
                         </button>
                       )}
-                      <div className="img-div">
-                        <motion.img
-                          whileTap={{ scale: 1.25 }}
-                          id="food-img"
-                          src={`${process.env.REACT_APP_APIENDPOINT}/${food.foodImage}`}
-                        />
+                      <div className="food-img-info-divider">
+                        <ul className="ul-food-items-info">
+                          <div>
+                            <img
+                              id="food-img"
+                              src={`${process.env.REACT_APP_APIENDPOINT}/${food.foodImage}`}
+                            />
+                          </div>
+                        </ul>
                       </div>
-                      <div className="food-info">
+                      <div className="food-img-info-divider">
                         <ul className="ul-food-items-info">
                           <li>
                             <h1 className="food-header">{food.foodName}</h1>
                           </li>
 
-                          <li>
-                            <div className="li-icon-info-div">
-                              {" "}
-                              <BiFoodMenu size={"1.3em"} />
-                              &nbsp;
+                          <li className="li-icon-info-div">
+                            <BiFoodMenu size={"1.3em"} />
+                            &nbsp;
+                            <p className="food-type-price-info">
                               {food.foodType}
-                            </div>
+                            </p>{" "}
                           </li>
-                          <li>
-                            <div className="li-icon-info-div">
-                              <AiOutlineDollarCircle size={"1.3em"} />
-                              &nbsp;
+                          <li className="li-icon-info-div">
+                            <AiOutlineDollarCircle size={"1.3em"} />
+                            &nbsp;
+                            <p className="food-type-price-info">
                               {food.foodCost}€&nbsp;
-                              {food.foodCostMeal
-                                ? "(Meal) " + food.foodCostMeal + "€"
-                                : null}
-                            </div>
+                              <p className="price-meal-wrap">
+                                {food.foodCostMeal
+                                  ? "(Meal) " + food.foodCostMeal + "€"
+                                  : null}
+                              </p>
+                            </p>
                           </li>
                           <li>
                             <div id="food-description-box">
@@ -371,24 +371,16 @@ class FoodDisplay extends Component {
                               </p>
                             </div>
                           </li>
-                          <li>
-                            <div className="rating">
-                              <StarRatings
-                                starDimension={this.state.StarDimension}
-                                rating={food.foodRating}
-                                starRatedColor="gold"
-                                changeRating={this.changeRating}
-                                numberOfStars={this.state.NumberStars}
-                              />
-                              {this.state.Mobile && (
-                                <p id="food-rating-mobile">
-                                  {food.foodRating}/5
-                                </p>
-                              )}
-                            </div>
+                          <li className="rating">
+                            <StarRatings
+                              starDimension={this.state.StarDimension}
+                              rating={food.foodRating}
+                              starRatedColor="gold"
+                              changeRating={this.changeRating}
+                              numberOfStars={this.state.NumberStars}
+                            />
                           </li>
                         </ul>
-
                         <div className="div-comments">
                           <div>
                             <button
@@ -401,15 +393,15 @@ class FoodDisplay extends Component {
                               onClick={() => this.toggleComments(food)}
                               className="show-comments"
                             >
-                              {this.state.Mobile || "Comments"}
+                              {this.props.isMobile ? "Comments" : null}
                               {showComments ? (
                                 <BiCommentX
-                                  className="comments-hide"
+                                  className="comments-show-hide"
                                   size={24}
                                 />
                               ) : (
                                 <BiCommentDetail
-                                  className="comments-show"
+                                  className="comments-show-hide"
                                   size={24}
                                 />
                               )}
@@ -423,7 +415,6 @@ class FoodDisplay extends Component {
                             handleLike={this.handleLike}
                           />
                         </div>
-
                         {showComments ? (
                           <Comments
                             user={this.props.user}
