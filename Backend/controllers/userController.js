@@ -1,6 +1,6 @@
 const Users = require("../models/user");
 const sendConfirmationEmail = require("./sendConfirmationEmail");
-const EmailToken = require("../models/emailConfirmationToken");
+const EmailToken = require("../models/emailToken");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -40,7 +40,6 @@ const registerUser = async (req, res) => {
   });
 
   if (createToken) {
-    console.log("asdasd", createToken.emailToken);
     sendConfirmationEmail({
       from: "finlunch.com",
       to: req.body.email,
@@ -61,7 +60,8 @@ const loginUser = async (req, res) => {
     return res.status(400).send("Email confirmation is required to login!");
 
   let validPassword = await bcrypt.compare(req.body.password, user.password);
-  if (!validPassword) return res.status(400).send("incorrect password");
+  if (!validPassword)
+    return res.status(400).send("incorrect username or password");
 
   const Token = user.generateToken();
 
@@ -107,9 +107,71 @@ const verifyEmail = async (req, res) => {
   }
 };
 
+const sendResetEmail = async (req, res) => {
+  let user = await Users.findOne({ where: { userEmail: req.body.email } });
+  console.log(user.id);
+
+  let createToken = await EmailToken.create({
+    userId: user.id,
+    emailToken: crypto.randomBytes(16).toString("hex"),
+  });
+  console.log(createToken.emailToken);
+  if (createToken) {
+    sendConfirmationEmail({
+      from: "finlunch.com",
+      to: req.body.email,
+      subject: "Reset Password link",
+      text: `Hello, ${user.username} you can reset your password by clicking this link - http://localhost:3000/ResetPassword/${user.id}/${createToken.emailToken}`,
+    });
+  } else {
+    return res.status(400).send("error creating token");
+  }
+};
+
+const resetPassword = async (req, res) => {
+  try {
+    const token = req.params.token;
+    const usertoken = await EmailToken.findOne({
+      token,
+      where: {
+        userId: req.params.id,
+      },
+    });
+
+    if (usertoken) {
+      var user = await Users.findOne({ where: { id: req.params.id } });
+    } else {
+      return res.status(400).send("token not found");
+    }
+
+    if (user) {
+      const update = await bcrypt.hash(req.body.password, 10).then((hash) => {
+        return Users.update(
+          {
+            password: hash,
+          },
+          {
+            where: {
+              id: usertoken.userId,
+            },
+          }
+        );
+      });
+
+      return res.status(200).send("You have successfully reset your password ");
+    } else {
+      return res.status(401).send("user not found");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   getCurrentUser,
   verifyEmail,
+  sendResetEmail,
+  resetPassword,
 };

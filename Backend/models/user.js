@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const { sequelize } = require(".");
 const Comments = require("./comment");
 const Likes = require("./like");
-const EmailToken = require("./emailConfirmationToken");
+const EmailToken = require("./emailToken");
 const jwt = require("jsonwebtoken");
 
 const Users = sequelize.define("Users", {

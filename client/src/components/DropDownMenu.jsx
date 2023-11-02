@@ -7,15 +7,14 @@ import { motion } from "framer-motion";
 export default function DropDownMenu({ logout, user, setuserMenu }) {
   let menu = useRef();
   useEffect(() => {
-    let closeMenu = (e) => {
-      if (menu.current.contains(e.target)) {
-        return;
-      }
-      setuserMenu(false);
-    };
-
     document.addEventListener("mousedown", closeMenu);
-  });
+  }, []);
+  const closeMenu = (e) => {
+    if (menu.current.contains(e.target)) {
+      return;
+    }
+    setuserMenu(false);
+  };
   return (
     <motion.div ref={menu} className="drop-down-menu" animate={{ y: 50 }}>
       <p id="drop-down-menu-username">{user.username}</p>

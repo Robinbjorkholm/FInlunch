@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { RiDeleteBinLine } from "react-icons/ri";
+import { RiDeleteBinLine, RiArrowDropUpLine } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import moment from "moment";
@@ -13,9 +13,11 @@ function Comments({
   UserId,
   Comments,
   admin,
-  handleDeleteComment,
   user,
+  handleDeleteComment,
   handleCreateComment,
+  toggleComments,
+  food,
 }) {
   const [createComment, setcreateComment] = useState("");
   const [createCommmentLength, setcreateCommentLength] = useState(0);
@@ -55,7 +57,7 @@ function Comments({
   }
 
   return (
-    <div>
+    <div className="test">
       <div className="create-comment">
         <form onSubmit={submitComment}>
           {" "}
@@ -116,9 +118,7 @@ function Comments({
                   <li className="comment-username-date-created-separator">
                     &nbsp;&#x2022;&nbsp;
                   </li>
-                  <li className="comment-date-created">
-                    {calculateCommentAge(comment.createdAt)}
-                  </li>
+                  <li>{calculateCommentAge(comment.createdAt)}</li>
 
                   {UserId === comment.UserId || admin === true ? (
                     <button
@@ -132,7 +132,7 @@ function Comments({
                 <li className="comment-comment"> {comment.comment} </li>
               </div>
             );
-          })}
+          })}{" "}
       </div>
     </div>
   );

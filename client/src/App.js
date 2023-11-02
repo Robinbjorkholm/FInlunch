@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import Geocode from "react-geocode";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 import Login from "./components/pages/Login";
 import CreateAccount from "./components/pages/CreateAccount";
 import ConfirmEmail from "./components/pages/ConfirmEmail";
+import ForgotPassword from "./components/pages/ForgotPassword";
+import ResetPassword from "./components/pages/ResetPassword";
 import VerifyEmail from "./components/pages/VerifyEmail";
+import PasswordUpdated from "./components/pages/PasswordUpdated";
+import ErrorPage from "./components/pages/ErrorPage";
 import Home from "./components/pages/Home";
 import PopupModal from "./components/utility/PopupModal";
-import Geocode from "react-geocode";
 
 function App() {
   const [user, setUser] = useState("");
@@ -29,7 +34,9 @@ function App() {
     setUser("");
     Cookies.remove("jwt");
   }
-
+  const isMobileNavigation = useMediaQuery({
+    query: "(max-width: 1102px ",
+  });
   return (
     <div className="App">
       <PopupModal />
@@ -39,6 +46,7 @@ function App() {
             path="/"
             element={
               <Home
+                isMobileNavigation={isMobileNavigation}
                 logout={logout}
                 user={user}
                 userLocationLng={userLocationLng}
@@ -50,11 +58,12 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/CreateAccount" element={<CreateAccount />} />
           <Route path="/ConfirmEmail" element={<ConfirmEmail />} />
-          <Route
-            path="/VerifyEmail/:id/:token"
-            element={<VerifyEmail  />}
-          />
-          <Route path="*" element={<Home />} />
+          <Route path="/VerifyEmail/:id/:token" element={<VerifyEmail />} />
+          <Route path="/ForgotPassword" element={<ForgotPassword />} />
+          <Route path="/ResetPassword/:id/:token" element={<ResetPassword />} />
+          <Route path="/PasswordUpdated" element={<PasswordUpdated />} />
+
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
     </div>

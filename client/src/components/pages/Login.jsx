@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Hero from "../Hero";
 import * as yup from "yup";
 import loginUser from "../Api/loginUser";
-import FoodDisplay from "../FoodDisplay";
-
+import Hero from "../Hero";
 import "../../styles/LoginSignup.css";
 
 const loginSchema = yup.object().shape({
@@ -13,7 +11,7 @@ const loginSchema = yup.object().shape({
   password: yup.string().min(10).max(30),
 });
 
-function Login() {
+function Login({ isMobileNavigation }) {
   const [LoginUsername, setLoginUsername] = useState("");
   const [LoginPassword, setLoginPassword] = useState("");
   const [LoginError, setLoginError] = useState();
@@ -38,17 +36,17 @@ function Login() {
 
   return (
     <div>
-      <div className="hero">
-        <a href="/" className="finlunch-banner">
-          FinLunch
-        </a>
-      </div>
+      <Hero isMobileNavigation={isMobileNavigation} />
 
       <div className="user-page">
         <div className="user-div">
           <div className="login-header-div">
             <h1 className="form-header"> Login</h1>
+            {LoginError && (
+              <p className="login-form-error-message">{LoginError}</p>
+            )}
           </div>
+
           <form onSubmit={submitLogin} className="user-form">
             <div className="input-div">
               <input
@@ -89,13 +87,15 @@ function Login() {
               {" "}
               Login{" "}
             </button>
-            {LoginError && (
-              <p className="login-form-error-message">{LoginError}</p>
-            )}
-            <div id="signup-div">
+            <div className="signup-div">
               <p>Need an account? &nbsp;</p>
-              <a href="/CreateAccount" id="signup-href">
+              <a href="/CreateAccount" className="signup-href">
                 Create now
+              </a>
+            </div>{" "}
+            <div className="signup-div">
+              <a href="/ForgotPassword" className="signup-href">
+                Forgot password ?
               </a>
             </div>
           </form>

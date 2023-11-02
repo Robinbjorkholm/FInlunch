@@ -26,7 +26,6 @@ export default function registerUser(username, password, email) {
     })
     .catch(function (error) {
       const { response } = error;
-      console.log(response.data);
       return response.data;
     });
 }

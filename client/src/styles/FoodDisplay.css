@@ -72,17 +72,41 @@
   background-color: rgb(255, 255, 255);
   max-width: 40rem;
   width: 95%;
-  margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-direction: row;
   color: #333;
+}
+.map-food-items-comments {
+  margin-top: 1rem;
+  min-height: 22rem;
+  border-radius: 3px;
+  background-color: rgb(255, 255, 255);
+  max-width: 40rem;
+  width: 95%;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333;
+
   box-shadow: 2px 4px 10px 2px hsl(0deg 0% 0% / 0.38);
 }
 
 .food-img-info-divider {
   width: 50%;
+}
+
+#food-img {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  min-height: 15rem;
+  margin-top: 0.5rem;
+  margin-bottom: 8rem;
+  margin-left: 0.5rem;
+  border-radius: 9px;
+  background-image: url("../images/imageunv.png");
 }
 .ul-food-items-info {
   display: flex;
@@ -92,9 +116,15 @@
   gap: 0.5rem;
   font-size: 18px;
 }
-.ul-food-items :nth-child(3) {
-  margin-bottom: 0.5rem;
+.ul-food-items-info {
+  display: flex;
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 18px;
 }
+
 .food-header {
   overflow-wrap: break-word;
   height: auto;
@@ -108,6 +138,7 @@
   font-weight: bold;
   overflow-wrap: break-word;
 }
+
 .food-type-price-info {
   overflow-wrap: break-word;
   width: 85%;
@@ -116,7 +147,7 @@
   display: inline-block;
 }
 #food-description-box {
-  width: 80%;
+  max-width: 80%;
 
   height: auto;
   min-height: 4.5rem;
@@ -133,7 +164,9 @@
   left: 28rem;
 }
 .delete-food-button {
-  background-color: rgb(255, 0, 0, 0.7);
+  z-index: 1;
+  position: absolute;
+  background-color: rgb(255, 0, 0, 1);
   border: 0px;
   color: white;
   font-size: 3rem;
@@ -150,16 +183,13 @@
   cursor: pointer;
   box-shadow: 0 0px 25px rgb(255, 0, 0);
 }
-
 .rating {
   display: flex;
   padding-left: 0.3rem;
 }
-
 .star-container {
   margin: -0.5rem;
 }
-
 .div-comments {
   display: flex;
 }
@@ -178,22 +208,17 @@
   margin-bottom: 1rem;
 }
 
-.show-comments:hover {
-  cursor: pointer;
-}
-
 .comments-show-hide {
   vertical-align: middle;
 }
 
-@media (max-width: 66.5em) {
-  .map-food-items-closed {
-    height: fit-content;
-  }
-  #food-description-box {
-    width: 95%;
-  }
+.comment-collapse-button {
+  display: flex;
+  border: 0px;
+  background: none;
+  margin: auto;
 }
+
 @media (max-width: 50em) {
   .show-comments {
     margin-right: 1rem;

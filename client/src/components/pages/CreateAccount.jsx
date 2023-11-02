@@ -24,7 +24,7 @@ const AccountSchema = yup.object().shape({
   email: yup.string().email().required("a valid email is required."),
 });
 
-function CreateAccount() {
+function CreateAccount({ isMobileNavigation }) {
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState("");
@@ -39,7 +39,7 @@ function CreateAccount() {
     resolver: yupResolver(AccountSchema),
   });
 
-  function submitRegister(event) {
+  function submit(event) {
     event.preventDefault();
     handleSubmit(
       registerUser(Username, Password, Email).then((response) => {
@@ -50,11 +50,7 @@ function CreateAccount() {
 
   return (
     <div>
-      <div className="hero">
-        <a href="/" className="finlunch-banner">
-          FinLunch
-        </a>
-      </div>
+      <Hero isMobileNavigation={isMobileNavigation} />
 
       <div className="user-page">
         <div className="user-div">
@@ -64,7 +60,7 @@ function CreateAccount() {
               <p className="login-form-error-message">{registerError}</p>
             )}
           </div>
-          <form className="user-form" onSubmit={submitRegister}>
+          <form className="user-form" onSubmit={submit}>
             <div className="input-div">
               <input
                 {...register("username", { required: "username" })}

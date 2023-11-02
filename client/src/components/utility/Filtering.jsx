@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import createNewFoodType from "../Api/createNewFoodType";
 import getFoodTypes from "../Api/getFoodTypes";
 import deleteFoodType from "../Api/deleteFoodType";
-import { RxDoubleArrowRight } from "react-icons/rx";
+
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import "../../styles/Filtering.css";
 
@@ -132,21 +132,8 @@ class Filtering extends Component {
     width: window.innerWidth,
     Sorting: null,
   };
-  constructor(props) {
-    super(props);
-    this.outsideRef = React.createRef();
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
 
-  async componentDidMount() {
-    //const data = await getFoodTypes();
-    //this.setState({ foodTypes: data });
-    document.addEventListener("mousedown", this.handleClickOutside);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClickOutside);
-  }
+  //choose which food type to show
   handleFoodFiltering = (food) => {
     if (this.state.clickedFoodType === food.foodType) {
       this.setState({ clickedFoodType: "" });
@@ -154,7 +141,7 @@ class Filtering extends Component {
     } else this.props.setSelectedFoodType(food.foodType);
     this.setState({ clickedFoodType: food.foodType });
   };
-
+  //Delete food type from list
   handleDeleteFoodType = async (foodType) => {
     const oldFoodTypes = this.state.foodTypes;
     const newFoodTypes = oldFoodTypes.filter(
@@ -164,12 +151,6 @@ class Filtering extends Component {
     deleteFoodType(foodType.id);
   };
 
-  //close mobile navigation
-  handleClickOutside(event) {
-    if (this.outsideRef && !this.outsideRef.current.contains(event.target)) {
-      this.props.closeMobileMenu();
-    }
-  }
   render() {
     if (this.props.user) {
       var { admin } = this.props.user;
@@ -187,9 +168,8 @@ class Filtering extends Component {
                 ? "filter-food-mobile-active"
                 : "filter-food"
             }
-            ref={this.outsideRef}
           >
-            {this.props.isMobileNavigation ||
+            {!this.props.isMobileNavigation ||
             this.props.mobileFilteringActive ? (
               <p className="filter-option-foodtype">Filter </p>
             ) : null}
@@ -241,11 +221,11 @@ class Filtering extends Component {
                   })
                 : null}
             </div>
-            {this.props.isMobileNavigation ||
+            {!this.props.isMobileNavigation ||
             this.props.mobileFilteringActive ? (
               <p className="filter-option-rating">Order by</p>
             ) : null}
-            {this.props.isMobileNavigation ||
+            {!this.props.isMobileNavigation ||
             this.props.mobileFilteringActive ? (
               <div className="div-filter-rating-text-arrow">
                 <button

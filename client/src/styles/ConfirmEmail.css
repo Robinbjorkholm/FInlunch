@@ -1,16 +1,15 @@
 .confirm-email-div {
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .confirm-email-header {
   display: inline-block;
-  margin-top: 2rem;
   text-wrap: balance;
   margin-bottom: 2rem;
+  font-size: 48px;
 }
 .confirm-email-message {
   width: 75%;
-  display: flex;
-  text-align: justify;
 }

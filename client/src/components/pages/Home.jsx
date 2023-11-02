@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Hero from "../Hero";
 import FoodDisplay from "../FoodDisplay";
 import Filtering from "../utility/Filtering";
@@ -11,11 +11,25 @@ function Home({
   userLocationLng,
   userLocationLat,
   userLocation,
+  isMobileNavigation,
 }) {
   const [selectedFoodType, setSelectedFoodType] = useState("");
   const [descending, setDescending] = useState(false);
   const [ascending, setAscending] = useState(false);
   const [mobileFilteringActive, setmobileFilteringActive] = useState(false);
+  const navigationRef = useRef(null);
+
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick);
+  }, []);
+  //check if user clicks outside filtering menu
+  const handleOutsideClick = (e) => {
+    if (!navigationRef.current.contains(e.target)) {
+      setmobileFilteringActive(false);
+      console.log("Jdsjkfdsjfk");
+    }
+  };
+
   //toggle Descending sorting
   const handleDescending = () => {
     setAscending(false);
@@ -30,18 +44,7 @@ function Home({
   const isMobile = useMediaQuery({
     query: "(min-width: 800px ",
   });
-  //check if screen is less than 1101px to toggle mobile filter menu
-  const isMobileNavigation = useMediaQuery({
-    query: "(min-width: 1101px ",
-  });
-  const handleToggleMobileMenu = () => {
-    console.log("adsfhjiudsiofguhhdsiolufhju");
-    setmobileFilteringActive(!mobileFilteringActive);
-  };
 
-  const closeMobileMenu = () => {
-    setmobileFilteringActive(false);
-  };
   return (
     <div>
       <Hero
@@ -50,7 +53,9 @@ function Home({
         isMobile={isMobile}
         isMobileNavigation={isMobileNavigation}
         mobileFilteringActive={mobileFilteringActive}
-        handleToggleMobileMenu={handleToggleMobileMenu}
+        setmobileFilteringActive={setmobileFilteringActive}
+        handleOutsideClick={handleOutsideClick}
+        ref={navigationRef}
       />
       <FoodDisplay
         userLocationLng={userLocationLng}
@@ -63,7 +68,6 @@ function Home({
         ascending={ascending}
       />
       <Filtering
-        closeMobileMenu={closeMobileMenu}
         handleDescending={handleDescending}
         descending={descending}
         ascending={ascending}
@@ -72,7 +76,7 @@ function Home({
         user={user}
         isMobileNavigation={isMobileNavigation}
         mobileFilteringActive={mobileFilteringActive}
-        handleToggleMobileMenu={handleToggleMobileMenu}
+        navigationRef={navigationRef}
       />
       <Footer />
     </div>

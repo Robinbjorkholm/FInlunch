@@ -15,12 +15,8 @@ export default function verifyEmail(id, token) {
 
       { headers: headers }
     )
-    .then((response) => {
-      console.log("hello world");
-    })
     .catch(function (error) {
       const { response } = error;
-      console.log(response.data);
       return response.data;
     });
 }

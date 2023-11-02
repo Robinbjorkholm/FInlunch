@@ -8,8 +8,8 @@ app.use("/images", express.static("./images"));
 app.set("view engine", "ejs");
 
 require("dotenv").config();
-require("./startup/cors")(app);
-require("./startup/routes")(app);
+require(".//cors")(app);
+require("./routes/routes")(app);
 
 const port = process.env.PORT;
 app.listen(port || 3001, () => {

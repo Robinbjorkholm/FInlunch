@@ -39,7 +39,7 @@
   background: transparent;
   border-bottom: 2px solid #969696;
 }
-#signup-div {
+.signup-div {
   margin-top: 1rem;
   display: flex;
   flex-direction: row;
@@ -47,7 +47,7 @@
   margin-right: auto;
 }
 
-#signup-href {
+.signup-href {
   color: blue;
 }
 .label-input {
@@ -98,11 +98,18 @@
   + .create-account-invalid-error-message {
   display: inline;
 }
+.login-create-submit-button:disabled:hover {
+  cursor: auto;
+}
+
+.user-text-p {
+  font-size: 1.3rem;
+}
 @media (max-width: 31.25em) {
   .user-div {
     width: 95%;
   }
-  #signup-div {
+  .signup-div {
     flex-direction: column;
   }
 }
