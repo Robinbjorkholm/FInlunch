@@ -1,8 +1,9 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, forwardRef, useRef, useEffect } from "react";
 import "../styles/Hero.css";
 import DropDownMenu from "./DropDownMenu";
-import { FaUserAlt } from "react-icons/fa";
+import { FaSearch, FaUserAlt } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { MdOutlineClose } from "react-icons/md";
 
 const Hero = React.forwardRef(
   (
@@ -13,21 +14,27 @@ const Hero = React.forwardRef(
       isMobileNavigation,
       mobileFilteringActive,
       setmobileFilteringActive,
+      setfoodFormOpen,
     },
     ref
   ) => {
     const [userMenu, setuserMenu] = useState(false);
-
     return (
       <div className="hero">
-        {!isMobileNavigation ? null : (
-          <GiHamburgerMenu
-            forwardref={ref}
-            size={36}
-            className="mobile-hamburger-filter-menu"
-            onClick={() => setmobileFilteringActive(!mobileFilteringActive)}
-          />
-        )}
+        {isMobileNavigation &&
+          (!mobileFilteringActive ? (
+            <GiHamburgerMenu
+              size={36}
+              className="mobile-hamburger-filter-menu"
+              onClick={() => setmobileFilteringActive(true)}
+            />
+          ) : (
+            <MdOutlineClose
+              size={36}
+              className="mobile-hamburger-filter-menu"
+              onClick={() => setmobileFilteringActive(false)}
+            />
+          ))}
 
         <a href="/" className="finlunch-banner">
           FinLunch
@@ -37,7 +44,7 @@ const Hero = React.forwardRef(
             Login
           </a>
         ) : (
-          <span className="login">
+          <div className="login">
             {!isMobile ? (
               <button
                 className="login"
@@ -62,9 +69,10 @@ const Hero = React.forwardRef(
                 logout={logout}
                 user={user}
                 setuserMenu={setuserMenu}
+                setfoodFormOpen={setfoodFormOpen}
               />
             ) : null}
-          </span>
+          </div>
         )}
       </div>
     );

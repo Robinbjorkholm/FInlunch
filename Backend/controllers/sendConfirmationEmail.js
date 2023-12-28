@@ -2,6 +2,7 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const sendConfirmationEmail = async ({ from, to, subject, text }) => {
+  // send email for password reset and email confirmation
   try {
     const transporter = nodemailer.createTransport({
       host: process.env.HOST,

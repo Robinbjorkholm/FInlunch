@@ -28,6 +28,7 @@
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 3rem;
 }
 .input-div {
   height: 3rem;
@@ -68,7 +69,6 @@
 }
 
 .login-create-submit-button {
-  margin-top: 1rem;
   background-color: rgb(252, 181, 77);
   border: none;
   font-size: 1.5rem;
@@ -85,25 +85,29 @@
 .login-create-submit-button:disabled {
   opacity: 0.5;
 }
-.create-account-invalid-error-message {
-  font-size: 0.7;
-  color: red;
-  display: none;
-}
-.create-account-invalid-error-message:before {
-  font-size: 0.7rem;
-  color: red;
-}
-.login-create-submit-button:hover:disabled
-  + .create-account-invalid-error-message {
+.login-create-submit-button:hover:disabled + .invalid-error-message {
   display: inline;
 }
 .login-create-submit-button:disabled:hover {
   cursor: auto;
 }
+.invalid-error-message {
+  font-size: 0.7;
+  color: red;
+  display: none;
+}
+.invalid-error-message:before {
+  font-size: 0.7rem;
+  color: red;
+  padding-bottom: 1rem;
+}
 
 .user-text-p {
   font-size: 1.3rem;
+}
+
+.loader {
+  padding-top: 1rem;
 }
 @media (max-width: 31.25em) {
   .user-div {

@@ -9,12 +9,12 @@ const EmailToken = sequelize.define("EmailToken", {
     type: DataTypes.INTEGER,
   },
 
-  userId: {
+  UserId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     onUpdate: "cascade",
     onDelete: "cascade",
-    references: { model: "users", key: "id" },
+    references: { model: "Users", key: "id" },
   },
 
   emailToken: {

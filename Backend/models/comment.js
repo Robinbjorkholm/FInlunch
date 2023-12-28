@@ -18,6 +18,10 @@ const Comments = sequelize.define("Comments", {
       notNull: true,
     },
   },
+  admin: {
+    type: DataTypes.BOOLEAN,
+    allowNull: true,
+  },
 });
 
 module.exports = Comments;

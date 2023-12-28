@@ -17,18 +17,18 @@ function Home({
   const [descending, setDescending] = useState(false);
   const [ascending, setAscending] = useState(false);
   const [mobileFilteringActive, setmobileFilteringActive] = useState(false);
-  const navigationRef = useRef(null);
+  const [foodFormOpen, setfoodFormOpen] = useState(false);
+
+  let navigationRef = useRef();
 
   useEffect(() => {
-    document.addEventListener("click", handleOutsideClick);
+    document.addEventListener("mousedown", (e) => {
+      if (!navigationRef.current.contains(e.target)) {
+        setmobileFilteringActive(false);
+      }
+    });
   }, []);
   //check if user clicks outside filtering menu
-  const handleOutsideClick = (e) => {
-    if (!navigationRef.current.contains(e.target)) {
-      setmobileFilteringActive(false);
-      console.log("Jdsjkfdsjfk");
-    }
-  };
 
   //toggle Descending sorting
   const handleDescending = () => {
@@ -54,8 +54,8 @@ function Home({
         isMobileNavigation={isMobileNavigation}
         mobileFilteringActive={mobileFilteringActive}
         setmobileFilteringActive={setmobileFilteringActive}
-        handleOutsideClick={handleOutsideClick}
         ref={navigationRef}
+        setfoodFormOpen={setfoodFormOpen}
       />
       <FoodDisplay
         userLocationLng={userLocationLng}
@@ -66,6 +66,8 @@ function Home({
         isMobile={isMobile}
         descending={descending}
         ascending={ascending}
+        foodFormOpen={foodFormOpen}
+        setfoodFormOpen={setfoodFormOpen}
       />
       <Filtering
         handleDescending={handleDescending}

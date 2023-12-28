@@ -1,10 +1,12 @@
 const Likes = require("../models/like");
 
+// get ALL likes, not all likes for specific food
 const getLikes = async (req, res) => {
   const Like = await Likes.findAll({});
   res.send(Like);
 };
 
+//Like & unlike food
 const like = async (req, res) => {
   const { foodId, UserId } = req.body;
 

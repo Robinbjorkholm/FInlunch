@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
+//gets the current user, never used
 const getCurrentUser = async (req, res) => {
   const currentUser = await Users.findOne({
     attributes: { exclude: ["password"] },
@@ -14,6 +15,7 @@ const getCurrentUser = async (req, res) => {
   res.send(currentUser);
 };
 
+//create a new user account and send a verification link to their email address containing a email token
 const registerUser = async (req, res) => {
   let user = await Users.findOne({
     where: { username: req.body.username },
@@ -35,7 +37,7 @@ const registerUser = async (req, res) => {
   });
 
   let createToken = await EmailToken.create({
-    userId: newUser.id,
+    UserId: newUser.id,
     emailToken: crypto.randomBytes(16).toString("hex"),
   });
 
@@ -44,7 +46,7 @@ const registerUser = async (req, res) => {
       from: "finlunch.com",
       to: req.body.email,
       subject: "Account verification link",
-      text: `Hello, ${req.body.username} please verify your account by clicking this link - http://localhost:3000/VerifyEmail/${newUser.id}/${createToken.emailToken}`,
+      text: `Hello, ${req.body.username} please verify your account by clicking this link - ${process.env.BASE_URL_FRONTEND}/verifyEmail/${newUser.id}/${createToken.emailToken}`,
     });
   } else {
     return res.status(400).send("error creating token");
@@ -53,6 +55,7 @@ const registerUser = async (req, res) => {
   res.header("x-authToken", Token).send(Token);
 };
 
+// login the user
 const loginUser = async (req, res) => {
   let user = await Users.findOne({ where: { username: req.body.username } });
   if (!user) return res.status(400).send("incorrect username or password");
@@ -68,6 +71,7 @@ const loginUser = async (req, res) => {
   res.send(Token);
 };
 
+// verify the token that the user sent for verifying their account
 const verifyEmail = async (req, res) => {
   try {
     const token = req.params.token;
@@ -78,12 +82,12 @@ const verifyEmail = async (req, res) => {
         userId: req.params.id,
       },
     });
-    console.log(usertoken);
+    console.log(" user token here" + usertoken);
 
     if (usertoken) {
       var user = await Users.findOne({ where: { id: req.params.id } });
     } else {
-      return res.status(400).send("token not found");
+      return res.status(404).send("token not found");
     }
 
     if (user) {
@@ -91,7 +95,7 @@ const verifyEmail = async (req, res) => {
         { isConfirmed: true },
         {
           where: {
-            id: usertoken.userId,
+            id: usertoken.UserId,
           },
         }
       );
@@ -100,34 +104,44 @@ const verifyEmail = async (req, res) => {
         .status(200)
         .send("Thank you for verifying you can now use your account");
     } else {
-      return res.status(401).send("user not found");
+      return res.status(404).send("user not found");
     }
   } catch (error) {
     console.log(error);
   }
 };
 
+// send email with reset password link
 const sendResetEmail = async (req, res) => {
   let user = await Users.findOne({ where: { userEmail: req.body.email } });
-  console.log(user.id);
-
+  if (!user) {
+    return res.status(404).send("We can't find a user with that email address");
+  }
   let createToken = await EmailToken.create({
-    userId: user.id,
+    UserId: user.id,
     emailToken: crypto.randomBytes(16).toString("hex"),
   });
-  console.log(createToken.emailToken);
+
   if (createToken) {
     sendConfirmationEmail({
       from: "finlunch.com",
       to: req.body.email,
       subject: "Reset Password link",
-      text: `Hello, ${user.username} you can reset your password by clicking this link - http://localhost:3000/ResetPassword/${user.id}/${createToken.emailToken}`,
+      text: `Hello ${user.username} 
+      
+You can reset your password by clicking this link - http://localhost:3000/ResetPassword/${user.id}/${createToken.emailToken}
+
+If this was a mistake, just ignore this email nothing will happen.
+
+`,
     });
+    res.status(200).send("an email has been sent to " + req.body.email);
   } else {
     return res.status(400).send("error creating token");
   }
 };
 
+//reset the users password
 const resetPassword = async (req, res) => {
   try {
     const token = req.params.token;
@@ -152,7 +166,7 @@ const resetPassword = async (req, res) => {
           },
           {
             where: {
-              id: usertoken.userId,
+              id: usertoken.UserId,
             },
           }
         );

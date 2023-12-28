@@ -58,7 +58,7 @@
 .comment {
   list-style: none;
   margin-top: 1rem;
-  background-color: rgb(242, 242, 242);
+  background-color: rgb(230, 230, 230);
   margin-right: 1rem;
 
   margin-bottom: 0.5rem;
@@ -104,3 +104,16 @@
 .comment-delete-button:hover {
   cursor: pointer;
 }
+
+#button-load-more-comments {
+  background-color: rgb(252, 181, 77);
+  border: none;
+  border-radius: 9px;
+  height: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+

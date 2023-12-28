@@ -7,7 +7,7 @@ export default function deleteComment(id, user) {
   axios
     .delete(
       `${process.env.REACT_APP_APIENDPOINT}/comments/deleteComment/${id}`,
-      { data: user }
+      { data: { user: user } }
     )
     .catch(function (error) {
       console.log(error);

@@ -1,10 +1,17 @@
+#open-food-form {
+  display: flex;
+  background: none;
+  border: none;
+  align-items: center;
+  vertical-align: middle;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+}
+
 .create-new-food {
-  text-align: center;
-  display: inline-block;
-  position: fixed;
+  position: absolute;
   margin-top: 2.5rem;
-  margin-left: 12.5%;
-  margin-right: 12.5%;
+  margin: 0 auto;
   background-color: rgb(206, 206, 206);
   width: 30rem;
   height: fit-content;
@@ -16,7 +23,7 @@
 #close-food-form {
   display: inline;
   position: absolute;
-  right: 0.5rem;
+  left: 0.5rem;
   background: none;
   border: 0;
   color: #fc0000;

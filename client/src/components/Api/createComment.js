@@ -4,7 +4,7 @@ export default async function createCommment(
   createComment,
   foodId,
   UserId,
-  username
+  user
 ) {
   return await Axios.post(
     `${process.env.REACT_APP_APIENDPOINT}/comments/createComment`,
@@ -12,7 +12,7 @@ export default async function createCommment(
       comment: createComment,
       FoodId: foodId,
       UserId: UserId,
-      username: username,
+     user:user
     }
   ).catch(function (error) {
     console.log(error);

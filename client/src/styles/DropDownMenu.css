@@ -7,7 +7,7 @@
   width: fit-content;
   min-width: 7rem;
   right: 0;
-  top: 2rem;
+ 
   border: 1px solid #969696;
   border-radius: 3px;
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
@@ -16,7 +16,7 @@
   padding: 0.5rem;
   font-size: 1.1rem;
 }
-#drop-down-menu-logout {
+.drop-down-menu-button {
   display: flex;
   background: none;
   border: none;
@@ -25,13 +25,13 @@
   opacity: 0.7;
   margin-top: 0.5rem;
 }
-#drop-down-menu-logout:last-child {
+.drop-down-menu-button:last-child {
   margin-bottom: 0.5rem;
 }
-#drop-down-menu-logout:hover {
+.drop-down-menu-button:hover {
   cursor: pointer;
   opacity: 1;
 }
-#drop-down-menu-logout-text {
+#drop-down-menu-text {
   font-size: 1rem;
 }

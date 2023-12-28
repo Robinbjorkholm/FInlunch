@@ -1,6 +1,7 @@
 const Foods = require("../models/food");
 const Likes = require("../models/like");
 
+//get all foods ( could include all comments for that specific food )
 const getFoods = async (req, res) => {
   const foods = await Foods.findAll({
     include: [
@@ -13,6 +14,7 @@ const getFoods = async (req, res) => {
   res.send(foods);
 };
 
+//create a new food
 const createFood = async (req, res) => {
   let newFood = {
     foodName: req.body.foodName,
@@ -28,6 +30,7 @@ const createFood = async (req, res) => {
   res.send(createdFood);
 };
 
+//delete a food by using the id
 const deleteFoodById = async (req, res) => {
   let foodId = req.params.id;
   let foodName = req.params.foodName;

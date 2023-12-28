@@ -1,0 +1,32 @@
+#spinning-burger-div {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+#spinning-burger {
+  border-radius: 50%;
+  width: 50%;
+  max-width: 15rem;
+  animation: spin-animation 3s infinite linear;
+}
+#waiting-for-server-div {
+  align-items: first baseline;
+  text-align: center;
+  flex-direction: row;
+  margin: 0 auto;
+}
+
+@keyframes spin-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

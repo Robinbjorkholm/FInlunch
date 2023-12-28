@@ -8,7 +8,13 @@ const headers = {
   },
 };
 
-export default function resetPassword(password, id, token) {
+export default function resetPassword(
+  password,
+  id,
+  token,
+  setpasswordUpdatedSuccessfully,
+  setloading
+) {
   return axios
     .post(
       `${process.env.REACT_APP_APIENDPOINT}/users/resetPassword/${id}/${token}`,
@@ -18,7 +24,8 @@ export default function resetPassword(password, id, token) {
       { headers: headers }
     )
     .then((response) => {
-      window.location.href = "/Login";
+      setpasswordUpdatedSuccessfully(true);
+      setloading(false);
     })
     .catch(function (error) {
       const { response } = error;

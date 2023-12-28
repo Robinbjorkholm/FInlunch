@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Like from "./Like";
 import NewFood from "./NewFood";
 import Comments from "./Comments";
+import SpinningBurger from "./utility/SpinningBurger";
 import deleteFood from "./Api/deleteFood";
 import getFoods from "./Api/getFoods";
 import likeFood from "./Api/likeFood";
@@ -16,147 +17,40 @@ import { BsFillGridFill } from "react-icons/bs";
 import { AiOutlineDollarCircle } from "react-icons/ai";
 import StarRatings from "react-star-ratings";
 import Geocode from "react-geocode";
-import testImage from "../images/testImage.png";
 import "../styles/FoodDisplay.css";
 
 class FoodDisplay extends Component {
   state = {
-    Foods: [
-      {
-        createdAt: "2023-09-11T21:01:15.000Z",
-        foodAddress: "Otto Malmsgatan 16, 68600 Jakobstad",
-        foodCost: "14.90",
-        foodCostMeal: "",
-        foodDescription:
-          "texas monster dsadsd dsaadhlkjjddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddjjjjjjjjjjjjjjjjhjklklklklklklklklklklklklklklsdasdasdas",
-        foodImage: "images\\1694466075470.jpg",
-        foodName: "texas monster",
-        foodRating: 5,
-        foodType: "pizzdddddddddddddddddddddddddddddddda",
-        id: 1,
-        updatedAt: "2023-09-11T21:01:15.000Z",
-      },
-      {
-        createdAt: "2023-09-11T21:01:15.000Z",
-        foodAddress: "Otto Malmsgatan 16, 68600 Jakobstad",
-        foodCost: "14.90",
-        foodCostMeal: "15.90",
-        foodDescription: "texas monster dsadsd dsaadsdasdasdas",
-        foodImage: "images\\1694466075470.jpg",
-        foodName: "texas monster",
-        foodRating: 5,
-        foodType: "pizza",
-        id: 2,
-        updatedAt: "2023-09-11T21:01:15.000Z",
-      },
-      {
-        createdAt: "2023-09-11T21:01:15.000Z",
-        foodAddress: "Otto Malmsgatan 16, 68600 Jakobstad",
-        foodCost: "14.90",
-        foodCostMeal: "15.90",
-        foodDescription: "texas monster dsadsd dsaadsdasdasdas",
-        foodImage: "images\\1694466075470.jpg",
-        foodName: "texas monster",
-        foodRating: 5,
-        foodType: "pizza",
-        id: 3,
-        updatedAt: "2023-09-11T21:01:15.000Z",
-      },
-      {
-        createdAt: "2023-09-11T21:01:15.000Z",
-        foodAddress: "Otto Malmsgatan 16, 68600 Jakobstad",
-        foodCost: "14.90",
-        foodCostMeal: "15.90",
-        foodDescription: "texas monster dsadsd dsaadsdasdasdas",
-        foodImage: "images\\1694466075470.jpg",
-        foodName: "texas monster",
-        foodRating: 4,
-        foodType: "pizza",
-        id: 4,
-        updatedAt: "2023-09-11T21:01:15.000Z",
-      },
-      {
-        createdAt: "2023-09-11T21:01:15.000Z",
-        foodAddress: "Otto Malmsgatan 16, 68600 Jakobstad",
-        foodCost: "14.90",
-        foodCostMeal: "15.90",
-        foodDescription: "texas monster dsadsd dsaadsdasdasdas",
-        foodImage: "images\\1694466075470.jpg",
-        foodName: "texas monster",
-        foodRating: 3,
-        foodType: "pizza",
-        id: 5,
-        updatedAt: "2023-09-11T21:01:15.000Z",
-      },
-      {
-        createdAt: "2023-09-11T21:01:15.000Z",
-        foodAddress: "Ototo Malmsgatan 16, 68600 Jakobstad",
-        foodCost: "1.90",
-        foodCostMeal: "143.90",
-        foodDescription: "asdadsadsdsa",
-        foodImage: "images\\1694466075470.jpg",
-        foodName: "asddadsdasdadsadsadsadsadsadsas",
-        foodRating: 5,
-        foodType: "Kebab",
-        id: 6,
-        updatedAt: "2023-09-11T21:01:15.000Z",
-      },
-      {
-        createdAt: "2023-09-11T21:01:15.000Z",
-        foodAddress: "Otto Malmsgatan 16, 68600 Jakobstad",
-        foodCost: "14.90",
-        foodCostMeal: "15.90",
-        foodDescription: "texas monster dsadsd dsaadsdasdasdas",
-        foodName: "texas monster",
-        foodRating: 1,
-        foodType: "pizza",
-        id: 7,
-        updatedAt: "2023-09-11T21:01:15.000Z",
-      },
-    ],
-    FoodFormOpen: false,
+    Foods: [],
     SearchBar: "",
+    FoodTypes: [],
     ShowComments: false,
     ShowCommentsById: null,
     FoodTypesDisplay: [],
-    Comments: [
-      {
-        User: { username: "osheezero", id: 1 },
-        UserId: 1,
-        comment: "fdsafsdfsd",
-        createdAt: "2023-10-18T13:34:30.000Z",
-        foodId: 1,
-        id: 1,
-        updatedAt: "2023-10-18T13:34:30.000Z",
-        username: "osheezero",
-      },
-    ],
+    Comments: [],
     Likes: [],
     NumberStars: 5,
     StarDimension: "28",
     GridLayout: false,
   };
 
-  /*async componentDidMount() {
+  async componentDidMount() {
     const Comments = await getComments();
     const FoodTypes = await getFoodTypes();
     const Likes = await getLikes();
     const Foods = await getFoods();
-    console.log(Foods);
     this.setState({
+      FoodTypes: FoodTypes,
       Foods: Foods,
       Comments: Comments,
       FoodTypesDisplay: FoodTypes,
       Likes: Likes,
     });
-    window.addEventListener("resize", this.resize.bind(this));
-    this.resize();
-  }*/
-  //resize window for number of stars to fit mobile
-
+    console.log(Foods);
+  }
   //open new food form
   toggleNewFoodForm = () => {
-    this.setState({ FoodFormOpen: !this.state.FoodFormOpen });
+    this.props.setfoodFormOpen(!this.props.foodformopen);
   };
   //delete food
   handleDelete = async (food) => {
@@ -174,13 +68,13 @@ class FoodDisplay extends Component {
     } else this.setState({ ShowCommentsById: food.id, ShowComments: true });
   };
   //delete Comment
-  handleDeleteComment = async (comment) => {
+  handleDeleteComment = async (comment, user) => {
     const oldComments = this.state.Comments;
     const newComments = oldComments.filter(
       (deleteComment) => deleteComment !== comment
     );
     this.setState({ Comments: newComments });
-    deleteComment(comment.id);
+    deleteComment(comment.id, user);
   };
   //create Comment
   handleCreateComment = async (Comment, foodId, UserId, username) => {
@@ -262,18 +156,12 @@ class FoodDisplay extends Component {
     }
     return (
       <div className="food-display">
-        {admin && (
-          <button id="open-food-form" onClick={() => this.toggleNewFoodForm()}>
-            New Food
-          </button>
-        )}
-
-        {this.state.FoodFormOpen ? (
+        {this.props.foodFormOpen && (
           <NewFood
-            closeFoodForm={this.toggleNewFoodForm}
+            setfoodFormOpen={this.props.setfoodFormOpen}
             foodTypesDisplay={this.state.FoodTypesDisplay}
           />
-        ) : null}
+        )}
         <div className="food-display-find-food">
           <form id="search-form">
             <input
@@ -292,159 +180,160 @@ class FoodDisplay extends Component {
             this.state.GridLayout ? "food-items-grid" : "food-items-flex"
           }
         >
-          {this.state.Foods
-            ? this.state.Foods.filter((food) => {
-                if (this.props.selectedFoodType) {
-                  return food.foodType
-                    .toLowerCase()
-                    .includes(this.props.selectedFoodType.toLowerCase());
-                }
-                if (this.state.SearchBar === "") {
-                  return food;
-                } else if (
-                  food.foodName
-                    .toLowerCase()
-                    .includes(this.state.SearchBar.toLowerCase()) ||
-                  food.foodType
-                    .toLowerCase()
-                    .includes(this.state.SearchBar.toLowerCase())
-                ) {
-                  return food;
+          {this.state.Foods ? (
+            this.state.Foods.filter((food) => {
+              if (this.props.selectedFoodType) {
+                return food.foodType
+                  .toLowerCase()
+                  .includes(this.props.selectedFoodType.toLowerCase());
+              }
+              if (this.state.SearchBar === "") {
+                return food;
+              } else if (
+                food.foodName
+                  .toLowerCase()
+                  .includes(this.state.SearchBar.toLowerCase()) ||
+                food.foodType
+                  .toLowerCase()
+                  .includes(this.state.SearchBar.toLowerCase())
+              ) {
+                return food;
+              }
+            })
+              .sort((a, b) => {
+                if (this.props.descending === true) {
+                  return a.foodRating < b.foodRating ? -1 : 1;
+                } else if (this.props.ascending === true) {
+                  return a.foodRating < b.foodRating ? 1 : -1;
                 }
               })
-                .sort((a, b) => {
-                  if (this.props.descending === true) {
-                    return a.foodRating < b.foodRating ? -1 : 1;
-                  } else if (this.props.ascending === true) {
-                    return a.foodRating < b.foodRating ? 1 : -1;
-                  }
-                })
-                .map((food) => {
-                  const showComments = food.id === this.state.ShowCommentsById;
-                  return (
-                    <div className="map-food-items-comments" key={food.id}>
-                      <div className="map-food-items">
-                        {admin && (
-                          <button
-                            className="delete-food-button"
-                            onClick={() => this.handleDelete(food)}
-                          >
-                            &times;
-                          </button>
-                        )}
-                        <div className="food-img-info-divider">
-                          <ul className="ul-food-items-info">
-                            <img
-                              id="food-img"
-                              src={`${process.env.REACT_APP_APIENDPOINT}/${food.foodImage}`}
-                              alt=""
-                            />
-                          </ul>{" "}
-                        </div>
-
-                        <div className="food-img-info-divider">
-                          <ul className="ul-food-items-info">
-                            <li>
-                              <h1 className="food-header">{food.foodName}</h1>
-                            </li>
-                            <li className="li-icon-info-div">
-                              <BiFoodMenu size={"1.3em"} />
-                              &nbsp;
-                              <p className="food-type-price-info">
-                                {food.foodType}
-                              </p>{" "}
-                            </li>
-                            <li className="li-icon-info-div">
-                              <AiOutlineDollarCircle size={"1.3em"} />
-                              &nbsp;
-                              <p className="food-type-price-info">
-                                {food.foodCost}€&nbsp;
-                                <p className="price-meal-wrap">
-                                  {food.foodCostMeal
-                                    ? "(Meal) " + food.foodCostMeal + "€"
-                                    : null}
-                                </p>
-                              </p>
-                            </li>
-                            <li>
-                              <div id="food-description-box">
-                                <p id="food-description-box-text">
-                                  {food.foodDescription}
-                                </p>
-                              </div>
-                            </li>
-                            <li className="rating">
-                              <StarRatings
-                                starDimension={this.state.StarDimension}
-                                rating={food.foodRating}
-                                starRatedColor="gold"
-                                changeRating={this.changeRating}
-                                numberOfStars={this.state.NumberStars}
-                              />
-                            </li>
-                            <div className="div-comments">
-                              <div>
-                                <button
-                                  onClick={() => this.toggleComments(food)}
-                                  className="comments-amount"
-                                >
-                                  <u> {this.commentAmount(food.id)}</u>&nbsp;
-                                </button>
-                                <button
-                                  onClick={() => this.toggleComments(food)}
-                                  className="show-comments"
-                                >
-                                  {this.props.isMobile ? "Comments" : null}
-                                  {showComments ? (
-                                    <BiCommentX
-                                      className="comments-show-hide"
-                                      size={24}
-                                    />
-                                  ) : (
-                                    <BiCommentDetail
-                                      className="comments-show-hide"
-                                      size={24}
-                                    />
-                                  )}
-                                </button>
-                              </div>
-                              <Like
-                                foodId={food.id}
-                                UserId={id}
-                                user={this.props.user}
-                                Likes={this.state.Likes}
-                                handleLike={this.handleLike}
-                              />
-                            </div>{" "}
-                          </ul>
-                        </div>
-                      </div>
-                      {showComments ? (
-                        <Comments
-                          user={this.props.user}
-                          username={username}
-                          admin={admin}
-                          foodId={food.id}
-                          food={food}
-                          UserId={id}
-                          Comments={this.state.Comments}
-                          handleDeleteComment={this.handleDeleteComment}
-                          handleCreateComment={this.handleCreateComment}
-                          toggleComments={this.toggleComments}
-                        />
-                      ) : null}
-                      {showComments ? (
+              .map((food) => {
+                const showComments = food.id === this.state.ShowCommentsById;
+                return (
+                  <div className="map-food-items-comments" key={food.id}>
+                    <div className="map-food-items">
+                      {admin && (
                         <button
-                          onClick={() => this.toggleComments(food)}
-                          className="comment-collapse-button"
+                          className="delete-food-button"
+                          onClick={() => this.handleDelete(food)}
                         >
-                          <RiArrowDropUpLine size={48} />
+                          &times;
                         </button>
-                      ) : null}
+                      )}
+                      <div className="food-img-info-divider">
+                        <ul className="ul-food-items-info">
+                          <img
+                            id="food-img"
+                            src={`${process.env.REACT_APP_APIENDPOINT}/${food.foodImage}`}
+                            alt=""
+                          />
+                        </ul>{" "}
+                      </div>
+
+                      <div className="food-img-info-divider">
+                        <ul className="ul-food-items-info">
+                          <li>
+                            <h1 className="food-header">{food.foodName}</h1>
+                          </li>
+                          <li className="li-icon-info-div">
+                            <BiFoodMenu size={"1.3em"} />
+                            &nbsp;
+                            <p className="food-type-price-info">
+                              {food.foodType}
+                            </p>{" "}
+                          </li>
+                          <li className="li-icon-info-div">
+                            <AiOutlineDollarCircle size={"1.3em"} />
+                            &nbsp;
+                            <p className="food-type-price-info">
+                              {food.foodCost}€&nbsp;
+                              <p className="price-meal-wrap">
+                                {food.foodCostMeal &&
+                                  "(Meal) " + food.foodCostMeal + "€"}
+                              </p>
+                            </p>
+                          </li>
+                          <li>
+                            <div id="food-description-box">
+                              <p id="food-description-box-text">
+                                {food.foodDescription}
+                              </p>
+                            </div>
+                          </li>
+                          <li className="rating">
+                            <StarRatings
+                              starDimension={this.state.StarDimension}
+                              rating={food.foodRating}
+                              starRatedColor="gold"
+                              changeRating={this.changeRating}
+                              numberOfStars={this.state.NumberStars}
+                            />
+                          </li>
+                          <div className="div-comments">
+                            <div>
+                              <button
+                                onClick={() => this.toggleComments(food)}
+                                className="comments-amount"
+                              >
+                                <u> {this.commentAmount(food.id)}</u>&nbsp;
+                              </button>
+                              <button
+                                onClick={() => this.toggleComments(food)}
+                                className="show-comments"
+                              >
+                                {this.props.isMobile && "Comments"}
+                                {showComments ? (
+                                  <BiCommentX
+                                    className="comments-show-hide"
+                                    size={24}
+                                  />
+                                ) : (
+                                  <BiCommentDetail
+                                    className="comments-show-hide"
+                                    size={24}
+                                  />
+                                )}
+                              </button>
+                            </div>
+                            <Like
+                              foodId={food.id}
+                              UserId={id}
+                              user={this.props.user}
+                              Likes={this.state.Likes}
+                              handleLike={this.handleLike}
+                            />
+                          </div>{" "}
+                        </ul>
+                      </div>
                     </div>
-                  );
-                })
-            : null}
+                    {showComments && (
+                      <Comments
+                        user={this.props.user}
+                        username={username}
+                        admin={admin}
+                        foodId={food.id}
+                        food={food}
+                        UserId={id}
+                        Comments={this.state.Comments}
+                        handleDeleteComment={this.handleDeleteComment}
+                        handleCreateComment={this.handleCreateComment}
+                        toggleComments={this.toggleComments}
+                      />
+                    )}
+                    {showComments && (
+                      <button
+                        onClick={() => this.toggleComments(food)}
+                        className="comment-collapse-button"
+                      >
+                        <RiArrowDropUpLine size={48} />
+                      </button>
+                    )}
+                  </div>
+                );
+              })
+          ) : (
+            <SpinningBurger />
+          )}
         </div>
       </div>
     );

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "../styles/NewFood.css";
 import createFood from "./Api/createFood";
+import imageUnavailable from "../images/imageunv.png";
+import "../styles/NewFood.css";
 
-function NewFood({ closeFoodForm, foodTypesDisplay }) {
+function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
   const [foodName, setfoodName] = useState("junkfood");
-  const [foodType, setfoodType] = useState("Pizza");
+  const [foodType, setfoodType] = useState("Unkown");
   const [foodDescription, setfoodDescription] = useState("some unknown food");
   const [foodAddress, setfoodAddress] = useState("");
   const [foodImage, setfoodImage] = useState("");
@@ -33,67 +34,70 @@ function NewFood({ closeFoodForm, foodTypesDisplay }) {
     });
   };*/
   return (
-      <div className="create-new-food">
-        <form
-          id="food-form"
-          onSubmit={() =>
-            createFood(
-              foodName,
-              foodType,
-              foodDescription,
-              foodAddress,
-              foodImage,
-              foodRating,
-              foodCost,
-              foodCostMeal
-            )
-          }
-          encType="multipart/form-data"
+    <div className="create-new-food">
+      <form
+        id="food-form"
+        onSubmit={() =>
+          createFood(
+            foodName,
+            foodType,
+            foodDescription,
+            foodAddress,
+            foodImage,
+            foodRating,
+            foodCost,
+            foodCostMeal
+          )
+        }
+        encType="multipart/form-data"
+      >
+        <button id="close-food-form" onClick={() => setfoodFormOpen(false)}>
+          &#x2715;
+        </button>
+        <h3 id="add-food-header">Add food</h3>
+        <label className="field-name-labels">Name</label>
+        <input
+          onChange={(e) => {
+            setfoodName(e.target.value);
+          }}
+          id="input-food-name"
+          placeholder="Double quarter pounder"
+          name="foodName"
+        ></input>
+
+        <label className="field-name-labels">Type</label>
+        <select
+          id="input-food-type"
+          name="foodType"
+          onChange={(e) => setfoodType(e.target.value)}
         >
-          <button id="close-food-form" onClick={closeFoodForm}>
-            &#x2715;
-          </button>
-          <h3 id="add-food-header">Add food</h3>
-          <label className="field-name-labels">Name</label>
-          <input
-            onChange={(e) => {
-              setfoodName(e.target.value);
-            }}
-            id="input-food-name"
-            placeholder="Double quarter pounder"
-            name="foodName"
-          ></input>
+          {foodTypesDisplay.map((foodType, id) => (
+            <option key={id} value={foodType.foodType}>
+              {foodType.foodType}
+            </option>
+          ))}
+        </select>
 
-          <label className="field-name-labels">Type</label>
-          <select
-            id="input-food-type"
-            name="foodType"
-            onChange={(e) => setfoodType(e.target.value)}
-          >
-            {foodTypesDisplay.map((foodType, id) => (
-              <option key={id} value={foodType.foodType}>
-                {foodType.foodType}
-              </option>
-            ))}
-          </select>
+        <label className="field-name-labels">Description</label>
+        <textarea
+          onChange={(e) => {
+            setfoodDescription(e.target.value);
+          }}
+          id="input-food-description"
+          placeholder="amazing burger with big patties"
+          name="foodDescription"
+        ></textarea>
 
-          <label className="field-name-labels">Description</label>
-          <textarea
-            onChange={(e) => {
-              setfoodDescription(e.target.value);
-            }}
-            id="input-food-description"
-            placeholder="amazing burger with big patties"
-            name="foodDescription"
-          ></textarea>
-          <input
-            onChange={(e) => {
-              setfoodAddress(e.target.value);
-            }}
-            id="input-food-name"
-            placeholder="Storgatan 9, 68600 Pietarsaari"
-            name="foodAddress"
-          ></input>
+        <input
+          onChange={(e) => {
+            setfoodAddress(e.target.value);
+          }}
+          id="input-food-name"
+          placeholder="Storgatan 9, 68600 Pietarsaari"
+          name="foodAddress"
+        ></input>
+        <div>
+          <label>Price </label>
           <input
             onChange={(e) => {
               setfoodCost(e.target.value);
@@ -104,6 +108,10 @@ function NewFood({ closeFoodForm, foodTypesDisplay }) {
             name="foodCost"
             step="any"
           ></input>
+        </div>
+        <div>
+          <label> Price Meal</label>
+
           <input
             onChange={(e) => {
               setfoodCostMeal(e.target.value);
@@ -114,15 +122,18 @@ function NewFood({ closeFoodForm, foodTypesDisplay }) {
             name="foodCostMeal"
             step="any"
           ></input>
-          <input
-            id="input-food-image"
-            type="file"
-            accept="image/png, image/jpeg, image/jpg"
-            name="foodImage"
-            onChange={(e) => {
-              setfoodImage(e.target.files[0]);
-            }}
-          />
+        </div>
+        <input
+          id="input-food-image"
+          type="file"
+          accept="image/png, image/jpeg, image/jpg"
+          name="foodImage"
+          onChange={(e) => {
+            setfoodImage(e.target.files[0]);
+          }}
+        />
+        <div>
+          <label>Rating</label>
           <input
             id="input-food-rating"
             type="number"
@@ -134,12 +145,12 @@ function NewFood({ closeFoodForm, foodTypesDisplay }) {
               setfoodRating(e.target.value);
             }}
           />
-
-          <button type="Submit" value="Submit" id="submit-button">
-            Create
-          </button>
-        </form>
-      </div>
+        </div>
+        <button type="Submit" value="Submit" id="submit-button">
+          Create
+        </button>
+      </form>
+    </div>
   );
 }
 

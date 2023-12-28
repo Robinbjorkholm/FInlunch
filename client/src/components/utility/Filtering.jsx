@@ -2,129 +2,12 @@ import React, { Component } from "react";
 import createNewFoodType from "../Api/createNewFoodType";
 import getFoodTypes from "../Api/getFoodTypes";
 import deleteFoodType from "../Api/deleteFoodType";
-
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import "../../styles/Filtering.css";
 
 class Filtering extends Component {
   state = {
-    foodTypes: [
-      {
-        id: 13,
-        foodType: "Pizza",
-        createdAt: "2023-06-25T12:41:34.000Z",
-        updatedAt: "2023-06-25T12:41:34.000Z",
-      },
-      {
-        id: 14,
-        foodType: "Kebab",
-        createdAt: "2023-06-25T12:41:37.000Z",
-        updatedAt: "2023-06-25T12:41:37.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      ,
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-      {
-        id: 16,
-        foodType: "Hamburger",
-        createdAt: "2023-07-24T11:23:13.000Z",
-        updatedAt: "2023-07-24T11:23:13.000Z",
-      },
-    ],
+    foodTypes: [],
     clickedFoodType: "",
     newFoodType: "",
     foodTypeActive: null,
@@ -132,7 +15,12 @@ class Filtering extends Component {
     width: window.innerWidth,
     Sorting: null,
   };
-
+  async componentDidMount() {
+    const foodTypes = await getFoodTypes();
+    this.setState({
+      foodTypes: foodTypes,
+    });
+  }
   //choose which food type to show
   handleFoodFiltering = (food) => {
     if (this.state.clickedFoodType === food.foodType) {
@@ -161,6 +49,7 @@ class Filtering extends Component {
           className={
             !this.props.mobileFilteringActive ? "filtering" : "filtering-mobile"
           }
+          ref={this.props.navigationRef}
         >
           <ul
             className={
@@ -210,6 +99,7 @@ class Filtering extends Component {
                           {food.foodType}
                           {admin && (
                             <button
+                              id="food-type-delete-button"
                               onClick={() => this.handleDeleteFoodType(food)}
                             >
                               X

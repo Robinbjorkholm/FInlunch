@@ -1,13 +1,12 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import { RiDeleteBinLine, RiArrowDropUpLine } from "react-icons/ri";
+import { RiDeleteBinLine } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import moment from "moment";
 import * as yup from "yup";
 import "../styles/comment.css";
 
-//<li className="comment-username">{comment.User.username}</li> line 106
 function Comments({
   foodId,
   UserId,
@@ -16,12 +15,11 @@ function Comments({
   user,
   handleDeleteComment,
   handleCreateComment,
-  toggleComments,
-  food,
 }) {
   const [createComment, setcreateComment] = useState("");
   const [createCommmentLength, setcreateCommentLength] = useState(0);
   const [goToLogin, setgoToLogin] = useState(false);
+  const [commentAmount, setcommentAmount] = useState(5);
   const CommentSchema = yup.object().shape({
     comment: yup
       .string()
@@ -29,6 +27,7 @@ function Comments({
       .min(1)
       .max(50),
   });
+
   const {
     register,
     handleSubmit,
@@ -42,10 +41,23 @@ function Comments({
     event.preventDefault();
     try {
       handleSubmit(
-        handleCreateComment(createComment, foodId, UserId, user.username)
+        handleCreateComment(createComment, foodId, UserId, user),
+        setcreateComment(),
+        setcreateCommentLength(0)(
+          (document.getElementById("textarea-comment").value = "")
+        )
       );
     } catch (error) {}
   }
+
+  const calculateCommentsLeft = (Comments, foodId, commentAmount) => {
+    let newComments = Comments.filter((comments) => {
+      return comments.foodId === foodId;
+    });
+    console.log(newComments);
+    newComments = Math.max(0, newComments.length - commentAmount);
+    return newComments;
+  };
 
   const calculateCommentAge = (commentCreatedAt) => {
     const commentAge = moment(new Date(commentCreatedAt)).fromNow();
@@ -68,6 +80,7 @@ function Comments({
                 {...register("comment", { required: "comment" })}
                 className="comment-text-area"
                 type="text"
+                id="textarea-comment"
                 placeholder="Add a comment..."
                 onChange={(e) => {
                   setcreateComment(e.target.value);
@@ -107,12 +120,13 @@ function Comments({
           .sort((a, b) => {
             return a.createdAt < b.createdAt ? 1 : -1;
           })
+          .slice(0, commentAmount)
           .map((comment) => {
             return (
               <div key={comment.id} className="comment">
                 <ul className="comment-user">
                   <li className="comment-username">{comment.username}</li>
-                  {comment.admin ? null : (
+                  {comment.admin === true && (
                     <li className="comment-user-admin"> CEO </li>
                   )}
                   <li className="comment-username-date-created-separator">
@@ -123,7 +137,7 @@ function Comments({
                   {UserId === comment.UserId || admin === true ? (
                     <button
                       className="comment-delete-button"
-                      onClick={() => handleDeleteComment(comment)}
+                      onClick={() => handleDeleteComment(comment, user)}
                     >
                       <RiDeleteBinLine size="24" />
                     </button>
@@ -133,6 +147,13 @@ function Comments({
               </div>
             );
           })}{" "}
+        <button
+          id="button-load-more-comments"
+          onClick={() => setcommentAmount(commentAmount + 5)}
+        >
+          Load more Comments (
+          {calculateCommentsLeft(Comments, foodId, commentAmount)})
+        </button>
       </div>
     </div>
   );

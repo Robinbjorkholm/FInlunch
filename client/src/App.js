@@ -7,13 +7,14 @@ import jwt_decode from "jwt-decode";
 import Login from "./components/pages/Login";
 import CreateAccount from "./components/pages/CreateAccount";
 import ConfirmEmail from "./components/pages/ConfirmEmail";
-import ForgotPassword from "./components/pages/ForgotPassword";
+import SendForgotPasswordEmail from "./components/pages/SendForgotPasswordEmail";
 import ResetPassword from "./components/pages/ResetPassword";
 import VerifyEmail from "./components/pages/VerifyEmail";
 import PasswordUpdated from "./components/pages/PasswordUpdated";
 import ErrorPage from "./components/pages/ErrorPage";
 import Home from "./components/pages/Home";
 import PopupModal from "./components/utility/PopupModal";
+import EmailSent from "./components/pages/EmailSent";
 
 function App() {
   const [user, setUser] = useState("");
@@ -59,10 +60,13 @@ function App() {
           <Route path="/CreateAccount" element={<CreateAccount />} />
           <Route path="/ConfirmEmail" element={<ConfirmEmail />} />
           <Route path="/VerifyEmail/:id/:token" element={<VerifyEmail />} />
-          <Route path="/ForgotPassword" element={<ForgotPassword />} />
+          <Route
+            path="/SendForgotPasswordEmail"
+            element={<SendForgotPasswordEmail />}
+          />
           <Route path="/ResetPassword/:id/:token" element={<ResetPassword />} />
           <Route path="/PasswordUpdated" element={<PasswordUpdated />} />
-
+          <Route path="/EmailSent" element={<EmailSent />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>

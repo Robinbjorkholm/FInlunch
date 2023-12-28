@@ -159,10 +159,7 @@
   overflow-wrap: break-word;
 }
 
-#open-food-form {
-  position: fixed;
-  left: 28rem;
-}
+
 .delete-food-button {
   z-index: 1;
   position: absolute;

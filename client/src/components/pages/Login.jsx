@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import loginUser from "../Api/loginUser";
+import ClipLoader from "react-spinners/ClipLoader";
 import Hero from "../Hero";
 import "../../styles/LoginSignup.css";
 
@@ -15,6 +16,7 @@ function Login({ isMobileNavigation }) {
   const [LoginUsername, setLoginUsername] = useState("");
   const [LoginPassword, setLoginPassword] = useState("");
   const [LoginError, setLoginError] = useState();
+  const [loading, setloading] = useState(false);
 
   const {
     register,
@@ -28,8 +30,9 @@ function Login({ isMobileNavigation }) {
   function submitLogin(event) {
     event.preventDefault();
     handleSubmit(
-      loginUser(LoginUsername, LoginPassword).then((response) => {
-        setLoginError(response.response.data);
+      setloading(true),
+      loginUser(LoginUsername, LoginPassword, setloading).then((response) => {
+        setLoginError(response);
       })
     );
   }
@@ -94,11 +97,12 @@ function Login({ isMobileNavigation }) {
               </a>
             </div>{" "}
             <div className="signup-div">
-              <a href="/ForgotPassword" className="signup-href">
+              <a href="/SendForgotPasswordEmail" className="signup-href">
                 Forgot password ?
               </a>
             </div>
           </form>
+          {loading && <ClipLoader color="#FCB54D" className="loader" />}
         </div>
       </div>
     </div>

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import registerUser from "../Api/registerUser";
+import createAccount from "../Api/createAccount";
+import ClipLoader from "react-spinners/ClipLoader";
 import Hero from "../Hero";
 import "../../styles/LoginSignup.css";
+
 
 const AccountSchema = yup.object().shape({
   username: yup
@@ -29,6 +31,7 @@ function CreateAccount({ isMobileNavigation }) {
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState("");
   const [registerError, setregisterError] = useState();
+  const [loading, setloading] = useState(false);
 
   const {
     register,
@@ -42,7 +45,8 @@ function CreateAccount({ isMobileNavigation }) {
   function submit(event) {
     event.preventDefault();
     handleSubmit(
-      registerUser(Username, Password, Email).then((response) => {
+      setloading(true),
+      createAccount(Username, Password, Email, setloading).then((response) => {
         setregisterError(response);
       })
     );
@@ -131,10 +135,11 @@ function CreateAccount({ isMobileNavigation }) {
               Create now{" "}
             </button>
 
-            <p className="create-account-invalid-error-message">
+            <p className="invalid-error-message">
               Please enter required fields.
             </p>
           </form>
+          {loading && <ClipLoader color="#FCB54D" className="loader" />}
         </div>
       </div>
     </div>

@@ -1,28 +1,42 @@
 import React, { useEffect, useRef } from "react";
 import "./../styles/DropDownMenu.css";
-import { BiLogOut } from "react-icons/bi";
-
+import { BiLogOut, BiListPlus } from "react-icons/bi";
 import { motion } from "framer-motion";
 
-export default function DropDownMenu({ logout, user, setuserMenu }) {
-  let menu = useRef();
+export default function DropDownMenu({
+  logout,
+  user,
+  setuserMenu,
+  setfoodFormOpen,
+}) {
   useEffect(() => {
     document.addEventListener("mousedown", closeMenu);
   }, []);
+
+  let menu = useRef();
+
   const closeMenu = (e) => {
-    if (menu.current.contains(e.target)) {
-      return;
+    if (!menu.current.contains(e.target)) {
+      setuserMenu(false);
     }
-    setuserMenu(false);
   };
   return (
-    <motion.div ref={menu} className="drop-down-menu" animate={{ y: 50 }}>
+    <motion.div ref={menu} className="drop-down-menu" animate={{ y: 10 }}>
       <p id="drop-down-menu-username">{user.username}</p>
       <hr />
-      <button id="drop-down-menu-logout" onClick={() => logout()}>
-        <BiLogOut className="drop-down-menu-logout-icon" size={24} />
-        <p id="drop-down-menu-logout-text">&nbsp;Logout</p>
+      <button className="drop-down-menu-button" onClick={() => logout()}>
+        <BiLogOut className="drop-down-menu-icon" size={24} />
+        <p id="drop-down-menu-text">&nbsp;Logout</p>
       </button>
+      {user.admin && (
+        <button
+          className="drop-down-menu-button"
+          onClick={() => setfoodFormOpen(true)}
+        >
+          <BiListPlus className="drop-down-menu-icon" size={24} />
+          <p id="drop-down-menu-text">&nbsp;New food</p>
+        </button>
+      )}
     </motion.div>
   );
 }

@@ -58,19 +58,16 @@ Users.hasMany(Likes, {
 Comments.belongsTo(Users, {
   onDelete: "cascade",
 });
-
 Likes.belongsTo(Users, {
   onDelete: "cascade",
 });
-Users.hasOne(EmailToken),
-  {
-    as: "emailToken",
-    foreignKey: "userId",
-  };
-
+Users.hasOne(EmailToken, {
+  as: "emailToken",
+  foreignKey: "UserId",
+});
 EmailToken.belongsTo(Users, {
   as: "user",
-  foreignKey: "userId",
+  foreignKey: "UserId",
 });
 
 module.exports = Users;
