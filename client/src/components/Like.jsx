@@ -9,22 +9,25 @@ function Like({ foodId, UserId, Likes, handleLike }) {
   useEffect(() => {
     likeForFood(foodId, UserId);
   }, []);
+
+  // calculate ammount of likes for each food (likes could instead belong to specific food when fetching from backend so this would not be needed )
   function likeAmount(foodId) {
     const likes = Likes.filter((like) => like.foodId === foodId);
     return likes.length;
   }
 
+  //update ui for like and unliking food
   function likeForFood(foodId, UserId) {
     var likes = Likes.filter((like) => like.foodId === foodId);
-
     likes = likes.filter((like) => like.UserId === UserId);
-
     if (likes.length > 0) {
       setfoodIsLiked(true);
     } else {
       setfoodIsLiked(false);
     }
   }
+
+  // Routes the user to login page if they are not logged in
   if (goToLogin) {
     return <Navigate to="/Login" />;
   }

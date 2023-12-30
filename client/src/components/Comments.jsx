@@ -49,7 +49,8 @@ function Comments({
       );
     } catch (error) {}
   }
-
+  
+//calculate amounts of comments left to be rendered when user expands comments field 
   const calculateCommentsLeft = (Comments, foodId, commentAmount) => {
     let newComments = Comments.filter((comments) => {
       return comments.foodId === foodId;
@@ -58,12 +59,13 @@ function Comments({
     newComments = Math.max(0, newComments.length - commentAmount);
     return newComments;
   };
-
+//calculate time since the comment was created to be displayed next to the comment inside the comments section
   const calculateCommentAge = (commentCreatedAt) => {
     const commentAge = moment(new Date(commentCreatedAt)).fromNow();
     return commentAge;
   };
 
+  //routes user to login page if they are not logged in
   if (goToLogin) {
     return <Navigate to="/Login" />;
   }

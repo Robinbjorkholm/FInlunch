@@ -33,7 +33,7 @@ class FoodDisplay extends Component {
     StarDimension: "28",
     GridLayout: false,
   };
-
+  // make api calls
   async componentDidMount() {
     const Comments = await getComments();
     const FoodTypes = await getFoodTypes();
@@ -46,7 +46,6 @@ class FoodDisplay extends Component {
       FoodTypesDisplay: FoodTypes,
       Likes: Likes,
     });
-    console.log(Foods);
   }
   //open new food form
   toggleNewFoodForm = () => {
@@ -247,10 +246,10 @@ class FoodDisplay extends Component {
                             &nbsp;
                             <p className="food-type-price-info">
                               {food.foodCost}€&nbsp;
-                              <p className="price-meal-wrap">
+                              <span className="price-meal-wrap">
                                 {food.foodCostMeal &&
                                   "(Meal) " + food.foodCostMeal + "€"}
-                              </p>
+                              </span>
                             </p>
                           </li>
                           <li>

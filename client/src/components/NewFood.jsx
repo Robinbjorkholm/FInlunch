@@ -49,6 +49,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
             foodCostMeal
           )
         }
+        
         encType="multipart/form-data"
       >
         <button id="close-food-form" onClick={() => setfoodFormOpen(false)}>

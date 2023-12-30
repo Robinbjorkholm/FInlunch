@@ -81,7 +81,7 @@
 }
 #food-type {
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #333;
   cursor: pointer;
   height: 1.5rem;
@@ -91,7 +91,7 @@
 #food-type-active {
   padding: 1rem;
   font-size: 1.1rem;
-  font-weight: 700;
+  text-shadow: 0 0 0.01px black;
   cursor: pointer;
   height: 1.5rem;
 }
@@ -134,9 +134,9 @@
   cursor: pointer;
   color: #333;
   cursor: pointer;
-  font-weight: bold;
   font-size: 1.1rem;
   margin-bottom: 1rem;
+  text-shadow: 0 0 0.01px black;
 }
 
 @media (max-width: 68.75em) {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import createNewFoodType from "../Api/createNewFoodType";
+
 import getFoodTypes from "../Api/getFoodTypes";
 import deleteFoodType from "../Api/deleteFoodType";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
@@ -142,16 +142,6 @@ class Filtering extends Component {
                 </button>
               </div>
             ) : null}
-            {admin && (
-              <form onSubmit={() => createNewFoodType(this.state.newFoodType)}>
-                <input
-                  onChange={(e) => {
-                    this.setState({ newFoodType: e.target.value });
-                  }}
-                ></input>
-                <button type="submit">Add</button>
-              </form>
-            )}
           </ul>
         </div>
 

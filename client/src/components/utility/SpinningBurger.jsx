@@ -4,10 +4,15 @@ import spinningburger from "../../images/spinningburger.png";
 import "../../styles/SpinningBurger.css";
 
 function SpinningBurger() {
+  //this function renders a spinning hamburger if the backend doesnt respond
   return (
     <div id="spinning-burger-div">
       <div>
-        <img src={spinningburger} id="spinning-burger" />
+        <img
+          src={spinningburger}
+          id="spinning-burger"
+          alt="a delicious hamburger that is spinning clockwise "
+        />
         <br /> <br />
         <div id="waiting-for-server-div">
           <p>
