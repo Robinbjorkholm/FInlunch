@@ -16,7 +16,6 @@ import { RiArrowDropUpLine } from "react-icons/ri";
 import { BsFillGridFill } from "react-icons/bs";
 import { AiOutlineDollarCircle } from "react-icons/ai";
 import StarRatings from "react-star-ratings";
-import Geocode from "react-geocode";
 import "../styles/FoodDisplay.css";
 
 class FoodDisplay extends Component {
@@ -106,39 +105,38 @@ class FoodDisplay extends Component {
     });
   };
   //calculate distance to restaurant (in a straight line)
-  /*calculateDistance = async (address) => {
+ /* calculateDistance = (address) => {
     if (!address) {
       return;
     } else {
-      let res = await Geocode.fromAddress(address)
-        .then(
-          (response) => {
-            function deg2rad(deg) {
-              return deg * (Math.PI / 180);
-            }
-            const { lat, lng } = response.results[0].geometry.location;
-
-            var dLat = deg2rad(lat - this.props.userLocationLat);
-            var dLon = deg2rad(lng - this.props.userLocationLng);
-            var a =
-              Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-              Math.cos(deg2rad(this.props.userLocationLat)) *
-                Math.cos(deg2rad(lat)) *
-                Math.sin(dLon / 2) *
-                Math.sin(dLon / 2);
-            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            var distance = 6371 * c;
-            console.log(distance);
-            return distance;
-          },
-          (err) => {
-            console.error(err);
+      let res = Geocode.fromAddress(address).then(
+        (response) => {
+          function deg2rad(deg) {
+            return deg * (Math.PI / 180);
           }
-        )
+          const { lat, lng } = response.results[0].geometry.location;
+
+          var dLat = deg2rad(lat - this.props.userLocationLat);
+          var dLon = deg2rad(lng - this.props.userLocationLng);
+          var a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(deg2rad(this.props.userLocationLat)) *
+              Math.cos(deg2rad(lat)) *
+              Math.sin(dLon / 2) *
+              Math.sin(dLon / 2);
+          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          var distance = 6371 * c;
+          console.log(distance);
+          return distance;
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
       return res;
     }
-  };*/
-
+  };
+*/
   // choose between flex and grid layout
   /*   <div className="div-option-grid-flex">
             <BsFillGridFill
@@ -252,6 +250,7 @@ class FoodDisplay extends Component {
                               </span>
                             </p>
                           </li>
+                         
                           <li>
                             <div id="food-description-box">
                               <p id="food-description-box-text">

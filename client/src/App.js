@@ -20,16 +20,28 @@ function App() {
   const [user, setUser] = useState("");
   const [userLocationLat, setuserLocationLat] = useState("");
   const [userLocationLng, setuserLocationLng] = useState("");
-  const [userLocation, setuserLocation] = useState([]);
   const jwtToken = Cookies.get("jwt");
   if (jwtToken) {
     var decoded = jwt_decode(jwtToken);
   }
   useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setuserLocationLat(latitude);
+          setuserLocationLng(longitude);
+        },
+        (error) => {
+          console.error("There was a problem getting users location", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser");
+    }
     setUser(decoded);
+    Geocode.setApiKey(process.env.REACT_APP_GOOGLEAPIKEY);
   }, [jwtToken]);
-
-  Geocode.setApiKey(process.env.REACT_APP_GOOGLEAPIKEY);
 
   function logout() {
     setUser("");
@@ -52,7 +64,6 @@ function App() {
                 user={user}
                 userLocationLng={userLocationLng}
                 userLocationLat={userLocationLat}
-                userLocation={userLocation}
               />
             }
           />
