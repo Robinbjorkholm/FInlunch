@@ -27,9 +27,9 @@ Admin users (me) are able to create new food reviews for other users to read,lik
 
 *-Sequelize ORM*
 
-*-image upload using **multer** *
+*-image upload using **multer***
 
-*-jwt for user authentication *
+*-jwt for user authentication*
 
 *-middleware for authorization*
 
@@ -55,6 +55,6 @@ Admin users (me) are able to create new food reviews for other users to read,lik
 
 *-Show distance to the fastfood place using a google api(semi-scared to use because i dont want to get a 10000€ bill because i used a google api)*
 
-Live version is available here: 65a30694389b9c0a1f9b5555--regal-cuchufli-0486a5.netlify.app
+Live version is available [here](65a30694389b9c0a1f9b5555--regal-cuchufli-0486a5.netlify.app)
 
 
