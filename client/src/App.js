@@ -25,7 +25,8 @@ function App() {
     var decoded = jwt_decode(jwtToken);
   }
   useEffect(() => {
-    if (navigator.geolocation) {
+    setUser(decoded);
+    /* if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
@@ -39,8 +40,7 @@ function App() {
     } else {
       console.error("Geolocation is not supported by this browser");
     }
-    setUser(decoded);
-    Geocode.setApiKey(process.env.REACT_APP_GOOGLEAPIKEY);
+    Geocode.setApiKey(process.env.REACT_APP_GOOGLEAPIKEY);*/
   }, [jwtToken]);
 
   function logout() {
