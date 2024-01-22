@@ -82,8 +82,6 @@ const verifyEmail = async (req, res) => {
         userId: req.params.id,
       },
     });
-    console.log(" user token here" + usertoken);
-
     if (usertoken) {
       var user = await Users.findOne({ where: { id: req.params.id } });
     } else {
@@ -99,7 +97,6 @@ const verifyEmail = async (req, res) => {
           },
         }
       );
-
       return res
         .status(200)
         .send("Thank you for verifying you can now use your account");
@@ -129,7 +126,7 @@ const sendResetEmail = async (req, res) => {
       subject: "Reset Password link",
       text: `Hello ${user.username} 
       
-You can reset your password by clicking this link - https://65aeb3a39b48903b06935ae6--superlative-cheesecake-27dd1d.netlify.app/${user.id}/${createToken.emailToken}
+You can reset your password by clicking this link - ${process.env.BASE_URL_FRONTEND}/${user.id}/${createToken.emailToken}
 
 If this was a mistake, just ignore this email nothing will happen.
 
