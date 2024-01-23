@@ -15,14 +15,25 @@ const sendConfirmationEmail = async ({ from, to, subject, text }) => {
       },
       tls: { rejectUnauthorized: false },
     });
-
-    await transporter.sendMail({
-      from: from,
-      to: to,
-      subject: subject,
-      text: text,
+    await new Promise((resolve, reject) => {
+      transporter.sendMail(
+        {
+          from: from,
+          to: to,
+          subject: subject,
+          text: text,
+        },
+        (err, info) => {
+          if (err) {
+            console.log(err);
+            reject(err);
+          } else {
+            resolve(info);
+          }
+        }
+      );
+      console.log("email sent");
     });
-    console.log("email sent");
   } catch (err) {
     console.log(err);
   }
