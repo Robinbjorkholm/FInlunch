@@ -26,11 +26,10 @@ const sendConfirmationEmail = async ({ from, to, subject, text }) => {
       },
       (err, info) => {
         if (err) {
-          console.log("error sendiegasdefiouhjpbhioulndfs")
+          console.log("error" + err);
           console.error(err);
           reject(err);
         } else {
-          console.log("succes dfgdfdgfdgfdfgdgf")
           resolve(info);
         }
       }
