@@ -5,8 +5,8 @@ const sendConfirmationEmail = async ({ from, to, subject, text }) => {
   // send email for password reset and email confirmation
 
   const transporter = nodemailer.createTransport({
-    host: process.env.HOST,
-    service: process.env.SERVICE,
+    host: "smtp.gmail.com",
+    service: "gmail",
     port: process.env.EMAILPORT,
     secure: process.env.SECURE,
     auth: {

@@ -18,7 +18,7 @@ export default function sendResetEmail(email, setloading) {
       { headers: headers }
     )
     .then((response) => {
-      setloading(false)
+      setloading(false);
       Cookies.remove("email");
       Cookies.set("email", email, { expires: 10 });
 
@@ -26,6 +26,7 @@ export default function sendResetEmail(email, setloading) {
     })
     .catch(function (error) {
       const { response } = error;
+      setloading(false);
       return response.data;
     });
 }
