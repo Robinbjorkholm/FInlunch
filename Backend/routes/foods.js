@@ -8,7 +8,11 @@ const authorization = require("../middleware/authorization");
 const admin = require("../middleware/admin");
 const uploadImage = require("../middleware/uploadImage");
 
-router.post("/createFood", [authorization, admin], foodController.createFood);
+router.post(
+  "/createFood",
+  [authorization, admin, uploadImage],
+  foodController.createFood
+);
 router.get("/getFoods", foodController.getFoods);
 router.delete("/:id", [authorization, admin], foodController.deleteFoodById);
 
