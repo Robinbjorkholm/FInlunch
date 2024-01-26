@@ -16,8 +16,6 @@ export default function DropDownMenu({
 
   const [newFoodType, setnewFoodType] = useState("");
   let menu = useRef();
-
-  console.log(newFoodType);
   //closes dropdownmenu if user clicks outside (incomplete)
   const closeMenu = (e) => {
     if (!menu.current.contains(e.target)) {
