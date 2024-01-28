@@ -31,6 +31,7 @@ class FoodDisplay extends Component {
     NumberStars: 5,
     StarDimension: "28",
     GridLayout: false,
+    FoodLoaded: false,
   };
   // make api calls
   async componentDidMount() {
@@ -38,6 +39,9 @@ class FoodDisplay extends Component {
     const FoodTypes = await getFoodTypes();
     const Likes = await getLikes();
     const Foods = await getFoods();
+    if (Foods) {
+      this.setState({ FoodLoaded: true });
+    }
     this.setState({
       FoodTypes: FoodTypes,
       Foods: Foods,
@@ -105,7 +109,7 @@ class FoodDisplay extends Component {
     });
   };
   //calculate distance to restaurant (in a straight line)
- /* calculateDistance = (address) => {
+  /* calculateDistance = (address) => {
     if (!address) {
       return;
     } else {
@@ -177,7 +181,7 @@ class FoodDisplay extends Component {
             this.state.GridLayout ? "food-items-grid" : "food-items-flex"
           }
         >
-          {this.state.Foods ? (
+          {this.state.FoodLoaded ? (
             this.state.Foods.filter((food) => {
               if (this.props.selectedFoodType) {
                 return food.foodType
@@ -250,7 +254,6 @@ class FoodDisplay extends Component {
                               </span>
                             </p>
                           </li>
-                         
                           <li>
                             <div id="food-description-box">
                               <p id="food-description-box-text">
