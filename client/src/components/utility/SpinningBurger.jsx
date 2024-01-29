@@ -5,7 +5,7 @@ import "../../styles/SpinningBurger.css";
 function SpinningBurger() {
   //this function renders a spinning hamburger with a countdown timer if the backend doesnt respond or backend is in a "sleeping state"
 
-  const [timer, settimer] = useState(2);
+  const [timer, settimer] = useState(35);
 
   useEffect(() => {
     if (!timer) return;
