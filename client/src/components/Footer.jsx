@@ -4,7 +4,7 @@ import "../styles/Footer.css";
 function Footer() {
   return (
     <div className="footer-div">
-      <h3 className="footer-h3">Got any food suggestions or collaborations?</h3>
+      <h3 className="footer-h3">Got a food suggestion or collaboration?</h3>
 
       <h3>
         contact me @ -{" "}
