@@ -5,7 +5,7 @@ export default function createFood(
   foodType,
   foodDescription,
   foodAddress,
-  foodImage,
+  //foodImage,
   foodRating,
   foodCost,
   foodCostMeal
@@ -15,7 +15,7 @@ export default function createFood(
   formData.append("foodType", foodType);
   formData.append("foodDescription", foodDescription);
   formData.append("foodAddress", foodAddress);
-  formData.append("foodImage", foodImage);
+  //formData.append("foodImage", foodImage);
   formData.append("foodRating", foodRating);
   formData.append("foodCost", foodCost);
   formData.append("foodCostMeal", foodCostMeal);

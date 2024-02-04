@@ -8,7 +8,6 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
   const [foodType, setfoodType] = useState("Unkown");
   const [foodDescription, setfoodDescription] = useState("some unknown food");
   const [foodAddress, setfoodAddress] = useState("");
-  const [foodImage, setfoodImage] = useState("");
   const [foodRating, setfoodRating] = useState(1);
   const [foodCost, setfoodCost] = useState(0);
   const [foodCostMeal, setfoodCostMeal] = useState(0);
@@ -33,6 +32,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
       };
     });
   };*/
+
   return (
     <div className="create-new-food">
       <form
@@ -43,13 +43,11 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
             foodType,
             foodDescription,
             foodAddress,
-            foodImage,
             foodRating,
             foodCost,
             foodCostMeal
           )
         }
-        
         encType="multipart/form-data"
       >
         <button id="close-food-form" onClick={() => setfoodFormOpen(false)}>
@@ -124,15 +122,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
             step="any"
           ></input>
         </div>
-        <input
-          id="input-food-image"
-          type="file"
-          accept="image/png, image/jpeg, image/jpg"
-          name="foodImage"
-          onChange={(e) => {
-            setfoodImage(e.target.files[0]);
-          }}
-        />
+       
         <div>
           <label>Rating</label>
           <input
