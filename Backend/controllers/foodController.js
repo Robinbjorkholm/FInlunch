@@ -21,7 +21,7 @@ const createFood = async (req, res) => {
     foodType: req.body.foodType,
     foodDescription: req.body.foodDescription,
     foodAddress: req.body.foodAddress,
-    //foodImage: req.file.path,
+    foodImage: req.file.path,
     foodRating: req.body.foodRating,
     foodCost: req.body.foodCost,
     foodCostMeal: req.body.foodCostMeal,
