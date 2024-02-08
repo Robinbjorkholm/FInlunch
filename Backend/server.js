@@ -4,7 +4,7 @@ const mysql = require("mysql2");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("/images", express.static("./images"));
+app.use("/images", express.static("/images"));
 app.set("view engine", "ejs");
 
 require("dotenv").config();
