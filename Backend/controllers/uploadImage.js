@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const router = express.Router();
 const cloudinary = require("../utils/cloudinary");
-const upload = require("../utils/multer");
+const upload = require("../middleware/multer");
 
 router.post("/uploadImage", upload.single("image"), function (req, res) {
   cloudinary.uploader.upload(req.file.path, function (err, result) {
