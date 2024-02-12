@@ -6,7 +6,7 @@ const Food = require("../models/food");
 const foodController = require("../controllers/foodController");
 const authorization = require("../middleware/authorization");
 const admin = require("../middleware/admin");
-const uploadImage = require("../middleware/uploadImage");
+const uploadImage = require("../controllers/uploadImage");
 
 router.post(
   "/createFood",
