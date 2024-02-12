@@ -4,7 +4,7 @@ const router = express.Router();
 const cloudinary = require("../utils/cloudinary");
 const upload = require("../middleware/multer");
 
-router.post("/uploadImage", upload.single("image"), function (req, res) {
+router.post("/uploadImage", upload.single("foodImage"), function (req, res) {
   cloudinary.uploader.upload(req.file.path, function (err, result) {
     if (err) {
       console.log(err);
