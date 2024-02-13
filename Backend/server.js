@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
 const mysql = require("mysql2");
+const food = require("./routes/foods");
+const user = require("./routes/users");
+const comment = require("./routes/comments");
+const foodTypes = require("./routes/foodTypes");
+const like = require("./routes/likes");
 const port = process.env.PORT;
 require("./cors")(app);
 
