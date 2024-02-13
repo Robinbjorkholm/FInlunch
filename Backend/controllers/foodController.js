@@ -1,5 +1,6 @@
 const Foods = require("../models/food");
 const Likes = require("../models/like");
+const uploadImage = require("../controllers/uploadImage");
 
 //get all foods ( could include all comments for that specific food )
 const getFoods = async (req, res) => {
@@ -26,6 +27,7 @@ const createFood = async (req, res) => {
     foodCost: req.body.foodCost,
     foodCostMeal: req.body.foodCostMeal,
   };
+  uploadImage();
   const createdFood = await Foods.create(newFood);
   res.send(createdFood);
 };
