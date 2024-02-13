@@ -1,5 +1,12 @@
 import Axios from "axios";
 
+const headers = {
+  headers: {
+    "Content-Type": "multipart/form-data",
+    accept: "application/json",
+  },
+};
+
 export default function createFood(
   foodName,
   foodType,
@@ -19,11 +26,12 @@ export default function createFood(
   formData.append("foodRating", foodRating);
   formData.append("foodCost", foodCost);
   formData.append("foodCostMeal", foodCostMeal);
+
   Axios.post(
     `${process.env.REACT_APP_APIENDPOINT}/foods/createFood`,
     formData,
     {
-      headers: { "Content-type": "multipart/form-data" },
+      headers: headers,
     }
   ).catch(function (error) {
     console.log(error);
