@@ -27,7 +27,6 @@ const createFood = async (req, res) => {
     foodCost: req.body.foodCost,
     foodCostMeal: req.body.foodCostMeal,
   };
-  uploadImage();
   const createdFood = await Foods.create(newFood);
   res.send(createdFood);
 };
