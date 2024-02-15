@@ -1,6 +1,7 @@
 const Foods = require("../models/food");
 const Likes = require("../models/like");
-const uploadImage = require("../controllers/uploadImage");
+const cloudinary = require("../utils/cloudinary");
+const upload = require("../middleware/multer");
 
 //get all foods ( could include all comments for that specific food )
 const getFoods = async (req, res) => {
@@ -27,6 +28,24 @@ const createFood = async (req, res) => {
     foodCost: req.body.foodCost,
     foodCostMeal: req.body.foodCostMeal,
   };
+  upload.single("foodImage"),
+    function (req, res) {
+      cloudinary.uploader.upload(req.file.path, function (err, result) {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({
+            success: false,
+            message: "Error",
+          });
+        }
+
+        res.status(200).json({
+          success: true,
+          message: "Uploaded!",
+          data: result,
+        });
+      });
+    };
   const createdFood = await Foods.create(newFood);
   res.send(createdFood);
 };
