@@ -7,7 +7,7 @@ const comment = require("./routes/comments");
 const foodTypes = require("./routes/foodTypes");
 const like = require("./routes/likes");
 const port = process.env.PORT;
-const cors = require("./cors")(app);
+const cors = require("cors");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -20,7 +20,7 @@ app.use("/foodTypes", foodTypes);
 app.use("/likes", like);
 app.use(
   cors({
-    origin: ["https://superlative-cheesecake-27dd1d.netlify.app/"],
+    origin: "https://superlative-cheesecake-27dd1d.netlify.app/",
     credentials: true,
   })
 );
