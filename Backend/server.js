@@ -20,14 +20,14 @@ app.use("/foodTypes", foodTypes);
 app.use("/likes", like);
 app.use(
   cors({
-    origin: "https://superlative-cheesecake-27dd1d.netlify.app/",
+    origin: "https://superlative-cheesecake-27dd1d.netlify.app",
     credentials: true,
   })
 );
 app.use(function (req, res, next) {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://superlative-cheesecake-27dd1d.netlify.app/"
+    "https://superlative-cheesecake-27dd1d.netlify.app"
   );
   res.header("Access-Control-Allow-Headers", true);
   res.header("Access-Control-Allow-Credentials", true);
