@@ -37,6 +37,7 @@ app.use(function (req, res, next) {
   );
   next();
 });
+app.use(cors());
 
 app.listen(port || 3001, () => {
   console.log(`server running on port ${port}`);
