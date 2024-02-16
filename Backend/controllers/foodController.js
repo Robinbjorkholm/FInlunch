@@ -23,12 +23,12 @@ const createFood = async (req, res) => {
     foodType: req.body.foodType,
     foodDescription: req.body.foodDescription,
     foodAddress: req.body.foodAddress,
-    foodImage: req.file.path,
+    //foodImage: req.file.path,
     foodRating: req.body.foodRating,
     foodCost: req.body.foodCost,
     foodCostMeal: req.body.foodCostMeal,
   };
-  upload.single("foodImage"),
+  /*upload.single("foodImage"),
     function (req, res) {
       cloudinary.uploader.upload(req.file.path, function (err, result) {
         if (err) {
@@ -45,7 +45,7 @@ const createFood = async (req, res) => {
           data: result,
         });
       });
-    };
+    };*/
   const createdFood = await Foods.create(newFood);
   res.send(createdFood);
 };
