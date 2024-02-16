@@ -37,6 +37,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
   return (
     <div className="create-new-food">
       <form
+        method="post"
         id="food-form"
         onSubmit={() =>
           createFood(
