@@ -45,7 +45,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
             foodType,
             foodDescription,
             foodAddress,
-            foodImage,
+            //foodImage,
             foodRating,
             foodCost,
             foodCostMeal
