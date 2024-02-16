@@ -34,7 +34,6 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
     });
   };*/
 
-  console.log(foodImage);
   return (
     <div className="create-new-food">
       <form
