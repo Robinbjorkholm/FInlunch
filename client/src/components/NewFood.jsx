@@ -148,7 +148,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
             }}
           />
         </div>
-        <button type="Submit" value="Submit" id="submit-button">
+        <button type="button" value="Submit" id="submit-button">
           Create
         </button>
       </form>
