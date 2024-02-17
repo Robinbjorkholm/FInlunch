@@ -9,7 +9,6 @@ const like = require("./routes/likes");
 const port = process.env.PORT;
 const cors = require("cors");
 
-
 // CORS
 app.use(
   cors({
@@ -28,14 +27,18 @@ app.use(function (req, res, next) {
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE,Content-Type"
   );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Origin, Authorization"
+  );
   next();
 });
-// CORS 
+// CORS
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/images", express.static("/images"));
 app.set("view engine", "ejs");
-// ROUTES // ROUTES // ROUTES // ROUTES 
+// ROUTES // ROUTES // ROUTES // ROUTES
 app.use("/foods", food);
 app.use("/users", user);
 app.use("/comments", comment);
