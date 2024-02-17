@@ -34,23 +34,26 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
     });
   };*/
 
+  function submitForm(event) {
+    event.preventDefault();
+    createFood(
+      foodName,
+      foodType,
+      foodDescription,
+      foodAddress,
+      //foodImage,
+      foodRating,
+      foodCost,
+      foodCostMeal
+    );
+  }
+
   return (
     <div className="create-new-food">
       <form
         method="post"
         id="food-form"
-        onSubmit={() =>
-          createFood(
-            foodName,
-            foodType,
-            foodDescription,
-            foodAddress,
-            //foodImage,
-            foodRating,
-            foodCost,
-            foodCostMeal
-          )
-        }
+        onSubmit={submitForm}
         encType="multipart/form-data"
       >
         <button id="close-food-form" onClick={() => setfoodFormOpen(false)}>
@@ -148,7 +151,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
             }}
           />
         </div>
-        <button type="button" value="Submit" id="submit-button">
+        <button type="submit" value="Submit" id="submit-button">
           Create
         </button>
       </form>
