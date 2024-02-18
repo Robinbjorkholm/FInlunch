@@ -27,7 +27,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
         foodName,
         foodType,
         foodDescription,
-        foodAddress,
+        //foodAddress,
         foodRating,
         foodCost,
         foodCostMeal

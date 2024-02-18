@@ -10,7 +10,7 @@ export default function createFood(
   foodName,
   foodType,
   foodDescription,
-  foodAddress,
+  //foodAddress,
   //foodImage,
   foodRating,
   foodCost,
@@ -20,7 +20,7 @@ export default function createFood(
   formData.append("foodName", foodName);
   formData.append("foodType", foodType);
   formData.append("foodDescription", foodDescription);
-  formData.append("foodAddress", foodAddress);
+  //formData.append("foodAddress", foodAddress);
   //formData.append("foodImage", foodImage);
   formData.append("foodRating", foodRating);
   formData.append("foodCost", foodCost);
@@ -28,9 +28,9 @@ export default function createFood(
 
   Axios.post(
     `${process.env.REACT_APP_APIENDPOINT}/foods/createFood`,
-    formData,
+    { formData },
     {
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: headers,
     }
   ).catch(function (error) {
     console.log(error);
