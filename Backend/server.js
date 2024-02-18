@@ -10,6 +10,8 @@ const port = process.env.PORT;
 const cors = require("cors");
 
 // CORS
+app.use(cors());
+/*
 app.use(
   cors({
     origin: "https://superlative-cheesecake-27dd1d.netlify.app",
@@ -33,7 +35,7 @@ app.use(function (req, res, next) {
   );
   next();
 });
-// CORS
+// CORS */
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/images", express.static("/images"));
