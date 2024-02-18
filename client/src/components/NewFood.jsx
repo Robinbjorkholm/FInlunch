@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import createFood from "./Api/createFood";
 import imageUnavailable from "../images/imageunv.png";
 import "../styles/NewFood.css";
@@ -13,6 +13,26 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
   const [foodCost, setfoodCost] = useState(0);
   const [foodCostMeal, setfoodCostMeal] = useState(0);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({});
+
+  function submitNewFood(event) {
+    event.preventDefault();
+    handleSubmit(
+      createFood(
+        foodName,
+        foodType,
+        foodDescription,
+        foodAddress,
+        foodRating,
+        foodCost,
+        foodCostMeal
+      )
+    );
+  }
   //Old way of uploading img
   /*const uploadImage = async (e) => {
     const imageFromInput = e.target.files[0];
@@ -38,18 +58,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
     <div className="create-new-food">
       <form
         id="food-form"
-        onSubmit={() =>
-          createFood(
-            foodName,
-            foodType,
-            foodDescription,
-            foodAddress,
-            //foodImage,
-            foodRating,
-            foodCost,
-            foodCostMeal
-          )
-        }
+        onSubmit={submitNewFood}
         encType="multipart/form-data"
       >
         <button id="close-food-form" onClick={() => setfoodFormOpen(false)}>
