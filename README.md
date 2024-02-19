@@ -2,7 +2,7 @@
 
 A webapp for my food reviews.
 
-Frontend is built with react and backend is built with Node and expressJS with MySQL as database.
+Frontend is built with react and Backend is built with Node and expressJS with MySQL as database.
 
 Admin users (me) are able to create new food reviews for other users to read,like and comment, other users that want to like or comment have to signup.
 
@@ -18,10 +18,10 @@ Admin users (me) are able to create new food reviews for other users to read,lik
 
 *-Routing*
 
-*-Error messages if backend doesn't respond*
+*-Error messages if Backend doesn't respond*
 
 
-**quick summary about backend**
+**quick summary about Backend**
 
 *-**Tried** using MVC pattern*
 
