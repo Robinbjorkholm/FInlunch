@@ -55,6 +55,8 @@ Admin users (me) are able to create new food reviews for other users to read,lik
 
 *-Show distance to the fastfood place using a google api(semi-scared to use because i dont want to get a 10000€ bill because i used a google api)*
 
+*-fix image upload*
+
 Live version is available [here](https://65aeb3a39b48903b06935ae6--superlative-cheesecake-27dd1d.netlify.app/)
 
 
