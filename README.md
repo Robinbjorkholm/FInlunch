@@ -1,4 +1,4 @@
-# Finlunch.com
+# Finlunch
 
 A webapp for my food reviews.
 
