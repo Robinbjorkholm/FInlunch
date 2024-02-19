@@ -27,7 +27,7 @@ Admin users (me) are able to create new food reviews for other users to read,lik
 
 *-Sequelize ORM*
 
-*-image upload using **multer***
+*-image upload using **multer** & **cloudinary** - doesn't work in production yet 😪* 
 
 *-jwt for user authentication*
 
