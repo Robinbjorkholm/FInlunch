@@ -1,8 +1,8 @@
-# Finlunch.com
+# Finlunch
 
 A webapp for my food reviews.
 
-Frontend is built with react and backend is built with Node and expressJS with MySQL as database.
+Frontend is built with react and Backend is built with Node and expressJS with MySQL as database.
 
 Admin users (me) are able to create new food reviews for other users to read,like and comment, other users that want to like or comment have to signup.
 
@@ -18,16 +18,16 @@ Admin users (me) are able to create new food reviews for other users to read,lik
 
 *-Routing*
 
-*-Error messages if backend doesn't respond*
+*-Error messages if Backend doesn't respond*
 
 
-**quick summary about backend**
+**quick summary about Backend**
 
 *-**Tried** using MVC pattern*
 
 *-Sequelize ORM*
 
-*-image upload using **multer***
+*-image upload using **multer** & **cloudinary** - doesn't work in production yet 😪* 
 
 *-jwt for user authentication*
 
@@ -54,6 +54,8 @@ Admin users (me) are able to create new food reviews for other users to read,lik
 *-icon instead of text for Header(maybe create a icon using AI)*
 
 *-Show distance to the fastfood place using a google api(semi-scared to use because i dont want to get a 10000€ bill because i used a google api)*
+
+*-fix image upload*
 
 Live version is available [here](https://65aeb3a39b48903b06935ae6--superlative-cheesecake-27dd1d.netlify.app/)
 
