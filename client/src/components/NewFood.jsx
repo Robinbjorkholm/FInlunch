@@ -14,12 +14,11 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
   const [foodCost, setfoodCost] = useState(0);
   const [foodCostMeal, setfoodCostMeal] = useState(0);
 
-  const {
+  /*const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({});
-
   function submitNewFood(event) {
     event.preventDefault();
     handleSubmit(
@@ -33,27 +32,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
         foodCostMeal
       )
     );
-  }
-  //Old way of uploading img
-  /*const uploadImage = async (e) => {
-    const imageFromInput = e.target.files[0];
-    const convertedImage = await convertToBase64(imageFromInput);
-    setfoodImage(convertedImage);
-  };*/
-
-  /*const convertToBase64 = (image) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(image);
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (err) => {
-        reject(err);
-      };
-    });
-  };*/
+  }*/
 
   return (
     <div className="create-new-food">
@@ -65,6 +44,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
             foodType,
             foodDescription,
             //foodAddress,
+            //foodImage
             foodRating,
             foodCost,
             foodCostMeal
@@ -167,7 +147,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
             }}
           />
         </div>
-        <button type="submit" value="Submit" id="submit-button">
+        <button type="Submit" value="Submit" id="submit-button">
           Create
         </button>
       </form>
