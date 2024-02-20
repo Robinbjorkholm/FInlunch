@@ -10,6 +10,8 @@ const port = process.env.PORT;
 const cors = require("cors");
 
 // CORS
+app.use(cors());
+/*
 app.use(
   cors({
     origin: "https://superlative-cheesecake-27dd1d.netlify.app",
