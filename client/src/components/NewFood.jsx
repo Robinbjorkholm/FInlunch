@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import createFood from "./Api/createFood";
+import createFoodV2 from "./Api/createFoodV2";
+
 import imageUnavailable from "../images/imageunv.png";
 import "../styles/NewFood.css";
 
@@ -39,7 +41,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
       <form
         id="food-form"
         onSubmit={() =>
-          createFood(
+          createFoodV2(
             foodName,
             foodType,
             foodDescription,
