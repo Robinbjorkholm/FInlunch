@@ -20,7 +20,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
     formState: { errors },
   } = useForm({});
 
-  function submitNewFood(event) {
+  /*function submitNewFood(event) {
     event.preventDefault();
     handleSubmit(
       createFood(
@@ -34,6 +34,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
       )
     );
   }
+  */
   //Old way of uploading img
   /*const uploadImage = async (e) => {
     const imageFromInput = e.target.files[0];
@@ -59,7 +60,16 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
     <div className="create-new-food">
       <form
         id="food-form"
-        onSubmit={submitNewFood}
+        onSubmit={()=>  createFood(
+          foodName,
+          foodType,
+          foodDescription,
+          //foodAddress,
+          //foodImage
+          foodRating,
+          foodCost,
+          foodCostMeal
+        )}
         encType="multipart/form-data"
       >
         <button id="close-food-form" onClick={() => setfoodFormOpen(false)}>
