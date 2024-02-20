@@ -59,7 +59,17 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
     <div className="create-new-food">
       <form
         id="food-form"
-        onSubmit={submitNewFood}
+        onSubmit={() =>
+          createFood(
+            foodName,
+            foodType,
+            foodDescription,
+            //foodAddress,
+            foodRating,
+            foodCost,
+            foodCostMeal
+          )
+        }
         encType="multipart/form-data"
       >
         <button id="close-food-form" onClick={() => setfoodFormOpen(false)}>
