@@ -129,7 +129,7 @@ function Comments({
                 <ul className="comment-user">
                   <li className="comment-username">{comment.username}</li>
                   {comment.admin === true && (
-                    <li className="comment-user-admin"> CEO </li>
+                    <li className="comment-user-admin"> ADMIN </li>
                   )}
                   <li className="comment-username-date-created-separator">
                     &nbsp;&#x2022;&nbsp;

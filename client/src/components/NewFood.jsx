@@ -73,6 +73,7 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
           id="input-food-type"
           name="foodType"
           onChange={(e) => setfoodType(e.target.value)}
+          placeholder="Unknown"
         >
           {foodTypesDisplay.map((foodType, id) => (
             <option key={id} value={foodType.foodType}>
