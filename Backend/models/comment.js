@@ -6,7 +6,7 @@ const Comments = sequelize.define("Comments", {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      len: [1, 50],
+      len: [1, 100],
     },
   },
   username: {

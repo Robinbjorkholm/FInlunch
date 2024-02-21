@@ -128,7 +128,7 @@
 .food-header {
   overflow-wrap: break-word;
   height: auto;
-  line-height: 1.8rem;
+  line-height: 0.8em;
   padding-top: 0.5rem;
   font-size: 3rem;
   margin-bottom: 1rem;
@@ -158,7 +158,6 @@
   padding: 0.2rem;
   overflow-wrap: break-word;
 }
-
 
 .delete-food-button {
   z-index: 1;

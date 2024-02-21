@@ -16,7 +16,9 @@ function ConfirmEmail({ isMobileNavigation }) {
               <p className="user-text-p">
                 A verification link has been sent to
                 <br />
+                <br />
                 <b>{Cookies.get("email")} </b>
+                <br />
                 <br /> Please click on the link to activate your account. If you
                 do not receive the email within a few minutes, please check your
                 spam folder.

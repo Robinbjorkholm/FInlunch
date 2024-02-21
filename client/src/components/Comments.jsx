@@ -23,7 +23,7 @@ function Comments({
   const CommentSchema = yup.object().shape({
     comment: yup
       .string()
-      .matches(/^\s*\S[\s\S]*$/, "Comment has to be between 1 & 50 characters.")
+      .matches(/^\s*\S[\s\S]*$/, "Comment has to be between 1 & 100 characters.")
       .min(1)
       .max(50),
   });
@@ -77,7 +77,7 @@ function Comments({
           {" "}
           {user ? (
             <div>
-              <p>{createCommmentLength}/50</p>
+              <p>{createCommmentLength}/100</p>
               <textarea
                 {...register("comment", { required: "comment" })}
                 className="comment-text-area"
@@ -103,14 +103,14 @@ function Comments({
               type="submit"
               className="comment-post-button"
               disabled={
-                errors.comment || !createComment || createCommmentLength > 50
+                errors.comment || !createComment || createCommmentLength > 100
               }
             >
               Comment
             </button>
 
             <p className="comment-invalid-error-message">
-              Comment has to be between 1 & 50 characters.
+              Comment has to be between 1 & 100 characters.
             </p>
           </div>
         </form>
