@@ -20,12 +20,16 @@ function App() {
   const [user, setUser] = useState("");
   const [userLocationLat, setuserLocationLat] = useState("");
   const [userLocationLng, setuserLocationLng] = useState("");
+  const [closeModal, setcloseModal] = useState(false);
+  const popupCookie = Cookies.get("popupmodalcookie");
   const jwtToken = Cookies.get("jwt");
   if (jwtToken) {
     var decoded = jwt_decode(jwtToken);
   }
+
   useEffect(() => {
     setUser(decoded);
+    setcloseModal(popupCookie);
     /* if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -43,6 +47,11 @@ function App() {
     Geocode.setApiKey(process.env.REACT_APP_GOOGLEAPIKEY);*/
   }, [jwtToken]);
 
+  function closePopupModal() {
+    Cookies.set("popupmodalcookie", true, { expires: 10 });
+    setcloseModal(Cookies.get("popupmodalcookie"));
+  }
+
   function logout() {
     setUser("");
     Cookies.remove("jwt");
@@ -50,9 +59,10 @@ function App() {
   const isMobileNavigation = useMediaQuery({
     query: "(max-width: 1102px ",
   });
+
   return (
     <div className="App">
-      <PopupModal />
+      {!closeModal && <PopupModal closePopupModal={closePopupModal} />}
       <Router>
         <Routes>
           <Route

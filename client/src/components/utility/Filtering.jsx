@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-
 import getFoodTypes from "../Api/getFoodTypes";
 import deleteFoodType from "../Api/deleteFoodType";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
+import { RiDeleteBinLine } from "react-icons/ri";
 import "../../styles/Filtering.css";
 
 class Filtering extends Component {
@@ -102,7 +102,7 @@ class Filtering extends Component {
                               id="food-type-delete-button"
                               onClick={() => this.handleDeleteFoodType(food)}
                             >
-                              X
+                              <RiDeleteBinLine size="24" />
                             </button>
                           )}
                         </li>

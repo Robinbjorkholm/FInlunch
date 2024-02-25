@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import createFood from "./Api/createFood";
 import createFoodV2 from "./Api/createFoodV2";
-
-import imageUnavailable from "../images/imageunv.png";
 import "../styles/NewFood.css";
 
 function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
@@ -14,27 +11,9 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
   const [foodImage, setfoodImage] = useState("");
   const [foodRating, setfoodRating] = useState(1);
   const [foodCost, setfoodCost] = useState(0);
-  const [foodCostMeal, setfoodCostMeal] = useState(0);
+  const [foodCostMeal, setfoodCostMeal] = useState();
 
-  /*const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({});
-  function submitNewFood(event) {
-    event.preventDefault();
-    handleSubmit(
-      createFood(
-        foodName,
-        foodType,
-        foodDescription,
-        //foodAddress,
-        foodRating,
-        foodCost,
-        foodCostMeal
-      )
-    );
-  }*/
+
 
   return (
     <div className="create-new-food">
