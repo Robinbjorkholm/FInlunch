@@ -48,3 +48,8 @@
 #popup-modal-close-button:hover {
   background-color: rgb(252, 181, 77);
 }
+@media (max-width: 31.25em) {
+  .popup-modal {
+    width: 95%;
+  }
+}
