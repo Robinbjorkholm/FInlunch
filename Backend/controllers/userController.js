@@ -126,7 +126,7 @@ const sendResetEmail = async (req, res) => {
       subject: "Reset Password link",
       text: `Hello ${user.username} 
       
-You can reset your password by clicking this link - ${process.env.BASE_URL_FRONTEND}/${user.id}/${createToken.emailToken}
+You can reset your password by clicking this link - ${process.env.BASE_URL_FRONTEND}/ResetPassword/${user.id}/${createToken.emailToken}
 
 If this was a mistake, just ignore this email nothing will happen.
 
