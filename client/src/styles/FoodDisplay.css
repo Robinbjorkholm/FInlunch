@@ -128,8 +128,7 @@
 .food-header {
   overflow-wrap: break-word;
   height: auto;
-  line-height: 0.8em;
-  padding-top: 0.5rem;
+  line-height: 1em;
   font-size: 3rem;
   margin-bottom: 1rem;
 }
@@ -216,6 +215,9 @@
 }
 
 @media (max-width: 50em) {
+  .food-header{
+    font-size: 2rem;
+  }
   .show-comments {
     margin-right: 1rem;
   }
