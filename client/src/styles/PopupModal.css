@@ -7,13 +7,15 @@
   z-index: 111111;
 }
 .popup-modal {
-  height: 17rem;
+  height: auto;
   background: rgb(255, 255, 255);
   width: 30rem;
   z-index: 1;
   position: fixed;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -33,17 +35,19 @@
   line-height: 1.4rem;
   text-align: center;
 }
+#okay {
+  font-style: italic;
+  font-weight: bold;
+}
 #popup-modal-close-button {
-  position: absolute;
-  bottom: 0.5rem;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(252, 181, 77, 0.8);
-  border-radius: 9px;
-  width: 25%;
-  height: 10%;
+  background-color: rgb(252, 181, 77, 0.7);
   border: none;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  border-radius: 9px;
+  transition: 0.2s;
+  width: 25%;
+  margin: 0 auto;
+  margin-bottom: 1rem;
 }
 #popup-modal-close-button:hover {
   background-color: rgb(252, 181, 77);

@@ -13,9 +13,16 @@ function PopupModal({ closePopupModal }) {
             This webapp was built for learning fullstack development and may
             have bugs or incomplete features.
           </p>
+          <br />
+          <p  id="popup-modal-text"><b>*Cookies*</b></p>
+          <p  id="popup-modal-text">
+            This site uses cookies by clicking <span id="okay">okay</span> you allow the site
+            to store cookies in your browser
+          </p>
+          <br />
         </div>
         <button id="popup-modal-close-button" onClick={() => closePopupModal()}>
-          Close
+          okay
         </button>
       </div>
     </div>
