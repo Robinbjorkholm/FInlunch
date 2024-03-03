@@ -14,6 +14,8 @@ import PasswordUpdated from "./components/pages/PasswordUpdated";
 import ErrorPage from "./components/pages/ErrorPage";
 import Home from "./components/pages/Home";
 import PopupModal from "./components/utility/PopupModal";
+import PopupModalClosed from "./components/utility/PopupModalClosed";
+
 import EmailSent from "./components/pages/EmailSent";
 
 function App() {
@@ -21,7 +23,9 @@ function App() {
   const [userLocationLat, setuserLocationLat] = useState("");
   const [userLocationLng, setuserLocationLng] = useState("");
   const [closeModal, setcloseModal] = useState(false);
+  const [closeModalClosed, setcloseModalClosed] = useState(false);
   const popupCookie = Cookies.get("popupmodalcookie");
+  const popupClosedCookie = Cookies.get("popupclosedcookie");
   const jwtToken = Cookies.get("jwt");
   if (jwtToken) {
     var decoded = jwt_decode(jwtToken);
@@ -30,6 +34,7 @@ function App() {
   useEffect(() => {
     setUser(decoded);
     setcloseModal(popupCookie);
+    setcloseModalClosed(popupClosedCookie);
     /* if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -51,6 +56,10 @@ function App() {
     Cookies.set("popupmodalcookie", true, { expires: 10 });
     setcloseModal(Cookies.get("popupmodalcookie"));
   }
+  function closePopupClosed() {
+    Cookies.set("popupclosedcookie", true, { expires: 10 });
+    setcloseModalClosed(Cookies.get("popupclosedcookie"));
+  }
 
   function logout() {
     setUser("");
@@ -62,6 +71,9 @@ function App() {
 
   return (
     <div className="App">
+      {!closeModalClosed && (
+        <PopupModalClosed closePopupClosed={closePopupClosed} />
+      )}
       {!closeModal && <PopupModal closePopupModal={closePopupModal} />}
       <Router>
         <Routes>
