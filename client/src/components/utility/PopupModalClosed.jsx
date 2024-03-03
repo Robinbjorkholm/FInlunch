@@ -8,7 +8,7 @@ function PopupModalClosed({ closePopupClosed }) {
         <div className="popup-modal-div">
           <br />
           <p className="popup-modal-text">
-            This Webapp isn't running anymore because of financial reasons 😥
+            This site isn't running anymore because of financial reasons 😥
           </p>
         </div>{" "}
         <br />
