@@ -57,6 +57,6 @@ Admin users (me) are able to create new food reviews for other users to read,lik
 
 *-fix image upload*
 
-Live version is available [here](https://65aeb3a39b48903b06935ae6--superlative-cheesecake-27dd1d.netlify.app/)
+Live version is available [here](https://superlative-cheesecake-27dd1d.netlify.app/)
 
 
