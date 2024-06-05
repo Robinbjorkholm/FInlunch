@@ -2,6 +2,8 @@
 
 A webapp for my food reviews.
 
+Live version is available [here](https://superlative-cheesecake-27dd1d.netlify.app/)
+
 Frontend is built with react and Backend is built with Node and expressJS with MySQL as database.
 
 Admin users (me) are able to create new food reviews for other users to read,like and comment, other users that want to like or comment have to signup.
@@ -57,6 +59,6 @@ Admin users (me) are able to create new food reviews for other users to read,lik
 
 *-fix image upload*
 
-Live version is available [here](https://superlative-cheesecake-27dd1d.netlify.app/)
+
 
 
