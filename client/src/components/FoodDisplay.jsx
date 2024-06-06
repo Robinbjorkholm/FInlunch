@@ -108,48 +108,6 @@ class FoodDisplay extends Component {
       }
     });
   };
-  //calculate distance to restaurant (in a straight line)
-  /* calculateDistance = (address) => {
-    if (!address) {
-      return;
-    } else {
-      let res = Geocode.fromAddress(address).then(
-        (response) => {
-          function deg2rad(deg) {
-            return deg * (Math.PI / 180);
-          }
-          const { lat, lng } = response.results[0].geometry.location;
-
-          var dLat = deg2rad(lat - this.props.userLocationLat);
-          var dLon = deg2rad(lng - this.props.userLocationLng);
-          var a =
-            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(deg2rad(this.props.userLocationLat)) *
-              Math.cos(deg2rad(lat)) *
-              Math.sin(dLon / 2) *
-              Math.sin(dLon / 2);
-          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-          var distance = 6371 * c;
-          console.log(distance);
-          return distance;
-        },
-        (err) => {
-          console.error(err);
-        }
-      );
-      return res;
-    }
-  };
-*/
-  // choose between flex and grid layout
-  /*   <div className="div-option-grid-flex">
-            <BsFillGridFill
-              size={24}
-              onClick={() =>
-                this.setState({ GridLayout: !this.state.GridLayout })
-              }
-            />
-          </div>*/
 
   render() {
     if (this.props.user) {
@@ -202,9 +160,9 @@ class FoodDisplay extends Component {
               }
             })
               .sort((a, b) => {
-                if (this.props.descending === true) {
+                if (this.props.descendingSorting === true) {
                   return a.foodRating < b.foodRating ? -1 : 1;
-                } else if (this.props.ascending === true) {
+                } else if (this.props.ascendingSorting === true) {
                   return a.foodRating < b.foodRating ? 1 : -1;
                 }
               })
@@ -299,7 +257,7 @@ class FoodDisplay extends Component {
                             <Like
                               foodId={food.id}
                               UserId={id}
-                              user={this.props.user}
+                              
                               Likes={this.state.Likes}
                               handleLike={this.handleLike}
                             />
@@ -309,7 +267,7 @@ class FoodDisplay extends Component {
                     </div>
                     {showComments && (
                       <Comments
-                        user={this.props.user}
+                        
                         username={username}
                         admin={admin}
                         foodId={food.id}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import Geocode from "react-geocode";
@@ -18,10 +18,11 @@ import PopupModalClosed from "./components/utility/PopupModalClosed";
 
 import EmailSent from "./components/pages/EmailSent";
 
+//context to avoid prop drilling 😂
+export const HomeContext = createContext();
+
 function App() {
   const [user, setUser] = useState("");
-  const [userLocationLat, setuserLocationLat] = useState("");
-  const [userLocationLng, setuserLocationLng] = useState("");
   const [closeModal, setcloseModal] = useState(false);
   const [closeModalClosed, setcloseModalClosed] = useState(false);
   const popupCookie = Cookies.get("popupmodalcookie");
@@ -35,21 +36,6 @@ function App() {
     setUser(decoded);
     setcloseModal(popupCookie);
     setcloseModalClosed(popupClosedCookie);
-    /* if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setuserLocationLat(latitude);
-          setuserLocationLng(longitude);
-        },
-        (error) => {
-          console.error("There was a problem getting users location", error);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser");
-    }
-    Geocode.setApiKey(process.env.REACT_APP_GOOGLEAPIKEY);*/
   }, [jwtToken]);
 
   function closePopupModal() {
@@ -60,11 +46,12 @@ function App() {
     Cookies.set("popupclosedcookie", true, { expires: 10 });
     setcloseModalClosed(Cookies.get("popupclosedcookie"));
   }
-
+  //logout user
   function logout() {
     setUser("");
     Cookies.remove("jwt");
   }
+  //media query for mobile navigation
   const isMobileNavigation = useMediaQuery({
     query: "(max-width: 1102px ",
   });
@@ -76,32 +63,26 @@ function App() {
       )}
       {!closeModal && <PopupModal closePopupModal={closePopupModal} />}
       <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                isMobileNavigation={isMobileNavigation}
-                logout={logout}
-                user={user}
-                userLocationLng={userLocationLng}
-                userLocationLat={userLocationLat}
-              />
-            }
-          />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/CreateAccount" element={<CreateAccount />} />
-          <Route path="/ConfirmEmail" element={<ConfirmEmail />} />
-          <Route path="/VerifyEmail/:id/:token" element={<VerifyEmail />} />
-          <Route
-            path="/SendForgotPasswordEmail"
-            element={<SendForgotPasswordEmail />}
-          />
-          <Route path="/ResetPassword/:id/:token" element={<ResetPassword />} />
-          <Route path="/PasswordUpdated" element={<PasswordUpdated />} />
-          <Route path="/EmailSent" element={<EmailSent />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+        <HomeContext.Provider value={{ isMobileNavigation, logout, user }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/CreateAccount" element={<CreateAccount />} />
+            <Route path="/ConfirmEmail" element={<ConfirmEmail />} />
+            <Route path="/VerifyEmail/:id/:token" element={<VerifyEmail />} />
+            <Route
+              path="/SendForgotPasswordEmail"
+              element={<SendForgotPasswordEmail />}
+            />
+            <Route
+              path="/ResetPassword/:id/:token"
+              element={<ResetPassword />}
+            />
+            <Route path="/PasswordUpdated" element={<PasswordUpdated />} />
+            <Route path="/EmailSent" element={<EmailSent />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </HomeContext.Provider>
       </Router>
     </div>
   );

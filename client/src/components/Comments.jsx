@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { HomeContext } from "../App";
+
 import moment from "moment";
 import * as yup from "yup";
 import "../styles/comment.css";
@@ -12,18 +14,22 @@ function Comments({
   UserId,
   Comments,
   admin,
-  user,
   handleDeleteComment,
   handleCreateComment,
 }) {
+  const { user } = useContext(HomeContext);
   const [createComment, setcreateComment] = useState("");
   const [createCommmentLength, setcreateCommentLength] = useState(0);
   const [goToLogin, setgoToLogin] = useState(false);
   const [commentAmount, setcommentAmount] = useState(5);
+
   const CommentSchema = yup.object().shape({
     comment: yup
       .string()
-      .matches(/^\s*\S[\s\S]*$/, "Comment has to be between 1 & 100 characters.")
+      .matches(
+        /^\s*\S[\s\S]*$/,
+        "Comment has to be between 1 & 100 characters."
+      )
       .min(1)
       .max(50),
   });
@@ -49,8 +55,8 @@ function Comments({
       );
     } catch (error) {}
   }
-  
-//calculate amounts of comments left to be rendered when user expands comments field 
+
+  //calculate amounts of comments left to be rendered when user expands comments field
   const calculateCommentsLeft = (Comments, foodId, commentAmount) => {
     let newComments = Comments.filter((comments) => {
       return comments.foodId === foodId;
@@ -59,7 +65,7 @@ function Comments({
     newComments = Math.max(0, newComments.length - commentAmount);
     return newComments;
   };
-//calculate time since the comment was created to be displayed next to the comment inside the comments section
+  //calculate time since the comment was created to be displayed next to the comment inside the comments section
   const calculateCommentAge = (commentCreatedAt) => {
     const commentAge = moment(new Date(commentCreatedAt)).fromNow();
     return commentAge;

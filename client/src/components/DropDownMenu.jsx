@@ -1,21 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
+import { HomeContext } from "../App";
 import createNewFoodType from "./Api/createNewFoodType";
 import { BiLogOut, BiListPlus } from "react-icons/bi";
 import { motion } from "framer-motion";
 import "./../styles/DropDownMenu.css";
 
-export default function DropDownMenu({
-  logout,
-  user,
-  setuserMenu,
-  setfoodFormOpen,
-}) {
+export default function DropDownMenu({ setuserMenu, setfoodFormOpen }) {
+  const {  user, logout } = useContext(HomeContext);
+  const [newFoodType, setnewFoodType] = useState("");
+
   useEffect(() => {
     document.addEventListener("mousedown", closeMenu);
   }, []);
 
-  const [newFoodType, setnewFoodType] = useState("");
   let menu = useRef();
+  
   //closes dropdownmenu if user clicks outside (incomplete)
   const closeMenu = (e) => {
     if (!menu.current.contains(e.target)) {
@@ -50,7 +49,6 @@ export default function DropDownMenu({
             onChange={(e) => {
               setnewFoodType(e.target.value);
             }}
-          
           />
           <button
             className="drop-down-menu-button"

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { HomeContext } from "../../App";
+
 import getFoodTypes from "../Api/getFoodTypes";
 import deleteFoodType from "../Api/deleteFoodType";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
@@ -15,6 +17,8 @@ class Filtering extends Component {
     width: window.innerWidth,
     Sorting: null,
   };
+
+  static contextType = HomeContext;
   async componentDidMount() {
     const foodTypes = await getFoodTypes();
     this.setState({
@@ -38,7 +42,6 @@ class Filtering extends Component {
     this.setState({ foodTypes: newFoodTypes });
     deleteFoodType(foodType.id);
   };
-
   render() {
     if (this.props.user) {
       var { admin } = this.props.user;
@@ -58,7 +61,7 @@ class Filtering extends Component {
                 : "filter-food"
             }
           >
-            {!this.props.isMobileNavigation ||
+            {!this.context.isMobileNavigation ||
             this.props.mobileFilteringActive ? (
               <p className="filter-option-foodtype">Filter </p>
             ) : null}
@@ -111,11 +114,11 @@ class Filtering extends Component {
                   })
                 : null}
             </div>
-            {!this.props.isMobileNavigation ||
+            {!this.context.isMobileNavigation ||
             this.props.mobileFilteringActive ? (
               <p className="filter-option-rating">Order by</p>
             ) : null}
-            {!this.props.isMobileNavigation ||
+            {!this.context.isMobileNavigation ||
             this.props.mobileFilteringActive ? (
               <div className="div-filter-rating-text-arrow">
                 <button

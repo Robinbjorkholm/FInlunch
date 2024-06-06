@@ -1,4 +1,11 @@
-import React, { useState, forwardRef, useRef, useEffect } from "react";
+import React, {
+  useState,
+  forwardRef,
+  useRef,
+  useEffect,
+  useContext,
+} from "react";
+import { HomeContext } from "../App";
 import "../styles/Hero.css";
 import DropDownMenu from "./DropDownMenu";
 import { FaSearch, FaUserAlt } from "react-icons/fa";
@@ -8,16 +15,14 @@ import { MdOutlineClose } from "react-icons/md";
 const Hero = React.forwardRef(
   (
     {
-      logout,
-      user,
       isMobile,
-      isMobileNavigation,
       mobileFilteringActive,
       setmobileFilteringActive,
       setfoodFormOpen,
     },
     ref
   ) => {
+    const { isMobileNavigation, user } = useContext(HomeContext);
     const [userMenu, setuserMenu] = useState(false);
     return (
       <div className="hero">
@@ -66,8 +71,6 @@ const Hero = React.forwardRef(
             )}
             {userMenu ? (
               <DropDownMenu
-                logout={logout}
-                user={user}
                 setuserMenu={setuserMenu}
                 setfoodFormOpen={setfoodFormOpen}
               />
