@@ -49,6 +49,12 @@
   height: 100%;
   background-color: transparent;
 }
+.filter-order-by-p {
+  font-size: 28px;
+  font-weight: 700;
+  padding-bottom: 1rem;
+  text-decoration: underline;
+}
 
 .filter-food-mobile-active {
   z-index: 10;
@@ -64,36 +70,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 20%;
   overflow: auto;
-  margin-bottom: 1rem;
-  gap: 1rem;
 }
 
-.filter-option-foodtype {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-decoration: underline;
-}
 .filter-food-items {
   word-wrap: break-word;
   max-width: 11rem;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
 }
-#food-type {
+.food-type {
   font-size: 1.1rem;
   color: #333;
   cursor: pointer;
-  height: 1.5rem;
   max-width: 100%;
   word-wrap: break-word;
 }
-#food-type-active {
-  font-size: 1.1rem;
+.food-type.active {
   text-shadow: 0 0 0.01px black;
-  cursor: pointer;
-  height: 1.5rem;
 }
 
 #food-type-delete-button {
@@ -101,12 +94,6 @@
   border: none;
   margin-left: 0.5rem;
   border-radius: 3px;
-}
-.order-by-rating {
-  font-size: 28px;
-  font-weight: 700;
-  padding-bottom: 1rem;
-  text-decoration: underline;
 }
 
 .order-by-rating-arrows {
@@ -119,6 +106,7 @@
   color: #333;
   cursor: pointer;
   font-size: 1.1rem;
+  margin-bottom: 1rem;
 }
 .order-by-rating-arrows.toggle {
   text-shadow: 0 0 0.01px black;

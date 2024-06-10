@@ -77,8 +77,8 @@ function Comments({
   }
 
   return (
-    <div className="test">
-      <div className="create-comment">
+    <div className="comment-section-div">
+      <div >
         <form onSubmit={submitComment}>
           {" "}
           {user ? (
@@ -104,7 +104,7 @@ function Comments({
               onFocus={() => setgoToLogin(true)}
             />
           )}
-          <div className="comment-button-error">
+          <div className="flex-column-height-3">
             <button
               type="submit"
               className="comment-post-button"

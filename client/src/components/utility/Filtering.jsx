@@ -60,58 +60,56 @@ const Filtering = ({
             mobileFilteringActive ? "filter-food-mobile-active" : "filter-food"
           }
         >
-          {!isMobileNavigation || mobileFilteringActive ? (
-            <p className="filter-option-foodtype">Filter </p>
-          ) : null}
-
           <div className="filter-order-flex-div">
-            {foodTypes
-              ? foodTypes.map((food, id) => {
-                  return (
-                    <ul
-                      key={id}
-                      className={
-                        mobileFilteringActive
-                          ? "filter-food-items-mobile"
-                          : "filter-food-items"
-                      }
-                    >
-                      <li
-                        onClick={() => {
-                          handleFoodFiltering(food);
-
-                          if (foodTypeActive === id) {
-                            setFoodTypeActive(null);
-                            setmobileFilteringActive(false);
-                          } else setFoodTypeActive(id);
-                          setmobileFilteringActive(false);
-                        }}
+            {!isMobileNavigation || mobileFilteringActive ? (
+              <React.Fragment>
+                <p className="filter-order-by-p">Filter </p>
+                {foodTypes &&
+                  foodTypes.map((food, id) => {
+                    return (
+                      <ul
                         key={id}
-                        id={
-                          foodTypeActive === id
-                            ? "food-type-active"
-                            : "food-type"
+                        className={
+                          mobileFilteringActive
+                            ? "filter-food-items-mobile"
+                            : "filter-food-items"
                         }
                       >
-                        {food.foodType}
-                        {user?.admin && (
-                          <button
-                            id="food-type-delete-button"
-                            onClick={() => handleDeleteFoodType(food)}
-                          >
-                            <RiDeleteBinLine size="24" />
-                          </button>
-                        )}
-                      </li>
-                    </ul>
-                  );
-                })
-              : null}
+                        <li
+                          onClick={() => {
+                            handleFoodFiltering(food);
+
+                            if (foodTypeActive === id) {
+                              setFoodTypeActive(null);
+                              setmobileFilteringActive(false);
+                            } else setFoodTypeActive(id);
+                            setmobileFilteringActive(false);
+                          }}
+                          key={id}
+                          className={`food-type ${
+                            foodTypeActive === id ? "active" : ""
+                          }`}
+                        >
+                          {food.foodType}
+                          {user?.admin && (
+                            <button
+                              id="food-type-delete-button"
+                              onClick={() => handleDeleteFoodType(food)}
+                            >
+                              <RiDeleteBinLine size="24" />
+                            </button>
+                          )}
+                        </li>
+                      </ul>
+                    );
+                  })}
+              </React.Fragment>
+            ) : null}
           </div>
 
           {!isMobileNavigation || mobileFilteringActive ? (
             <div className="filter-order-flex-div">
-              <p className="order-by-rating">Order by</p>
+              <p className="filter-order-by-p">Order by</p>
 
               <button
                 className={`order-by-rating-arrows ${

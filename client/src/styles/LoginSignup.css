@@ -45,12 +45,6 @@
 .signup-href {
   color: blue;
 }
-.label-input {
-  height: 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
 
 .form-error-message {
   color: red;
