@@ -12,6 +12,8 @@ Admin users (me) are able to create new food reviews for other users to read,lik
 
 *-ReactJS*
 
+*-Hooks(useState,ref,effect,context & custom hook)*
+
 *-form validation using yup and react-hook-form*
 
 *-Axios for sending requests*
