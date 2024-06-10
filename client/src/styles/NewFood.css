@@ -42,12 +42,7 @@
 .field-name-labels {
   text-align: left;
 }
-#food-form {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  align-items: center;
-}
+
 .food-form input {
   width: 50%;
   margin-bottom: 3rem;

@@ -60,13 +60,14 @@
   background-color: rgba(233, 233, 233, 1);
   white-space: nowrap;
 }
-.filter-div-map {
+.filter-order-flex-div {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 20%;
   overflow: auto;
   margin-bottom: 1rem;
+  gap: 1rem;
 }
 
 .filter-option-foodtype {
@@ -94,24 +95,21 @@
   cursor: pointer;
   height: 1.5rem;
 }
-.filter-option-rating {
+
+#food-type-delete-button {
+  background-color: transparent;
+  border: none;
+  margin-left: 0.5rem;
+  border-radius: 3px;
+}
+.order-by-rating {
   font-size: 28px;
   font-weight: 700;
   padding-bottom: 1rem;
   text-decoration: underline;
 }
-#food-type-delete-button {
-  background-color: transparent;
-  border: none;
 
-  margin-left: 0.5rem;
-  border-radius: 3px;
-}
-.div-filter-option-rating {
-  display: flex;
-  align-items: bottom;
-}
-.filter-option-rating-arrows {
+.order-by-rating-arrows {
   display: flex;
   justify-content: center;
   vertical-align: bottom;
@@ -121,19 +119,8 @@
   color: #333;
   cursor: pointer;
   font-size: 1.1rem;
-  margin-bottom: 1rem;
 }
-.filter-option-rating-arrows-toggle {
-  display: flex;
-  justify-content: center;
-  vertical-align: bottom;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #333;
-  cursor: pointer;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
+.order-by-rating-arrows.toggle {
   text-shadow: 0 0 0.01px black;
 }
 

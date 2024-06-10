@@ -6,12 +6,7 @@
   margin-right: auto;
   padding-bottom: 3rem;
 }
-.food-display-find-food {
-  display: flex;
-  flex-direction: row;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 .div-option-grid-flex {
   position: absolute;
   display: flex;
@@ -51,12 +46,7 @@
   border: 1px solid black;
 }
 
-.food-items-flex {
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 .food-items-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -185,11 +175,8 @@
 .star-container {
   margin: -0.5rem;
 }
-.div-comments {
-  display: flex;
-}
 
-.div-comments .comments-amount {
+.comments-amount {
   font-weight: bold;
   font-size: 1.5rem;
   border: 0px;

@@ -90,13 +90,14 @@ function Login({ isMobileNavigation }) {
               {" "}
               Login{" "}
             </button>
-            <div className="signup-div">
+            <div className="flex-column">
               <p>Need an account? &nbsp;</p>
               <a href="/CreateAccount" className="signup-href">
                 Create now
               </a>
             </div>{" "}
-            <div className="signup-div">
+            <br/>
+            <div className="flex-column">
               <a href="/SendForgotPasswordEmail" className="signup-href">
                 Forgot password ?
               </a>

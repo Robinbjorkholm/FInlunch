@@ -121,7 +121,7 @@ class FoodDisplay extends Component {
             foodTypesDisplay={this.state.FoodTypesDisplay}
           />
         )}
-        <div className="food-display-find-food">
+        <div className="flex-row">
           <form id="search-form">
             <input
               type="text"
@@ -135,9 +135,7 @@ class FoodDisplay extends Component {
           </form>
         </div>
         <div
-          className={
-            this.state.GridLayout ? "food-items-grid" : "food-items-flex"
-          }
+          className={this.state.GridLayout ? "food-items-grid" : "flex-column"}
         >
           {this.state.FoodLoaded ? (
             this.state.Foods.filter((food) => {
@@ -228,7 +226,7 @@ class FoodDisplay extends Component {
                               numberOfStars={this.state.NumberStars}
                             />
                           </li>
-                          <div className="div-comments">
+                          <div className="flex-row">
                             <div>
                               <button
                                 onClick={() => this.toggleComments(food)}
@@ -257,7 +255,6 @@ class FoodDisplay extends Component {
                             <Like
                               foodId={food.id}
                               UserId={id}
-                              
                               Likes={this.state.Likes}
                               handleLike={this.handleLike}
                             />
@@ -267,7 +264,6 @@ class FoodDisplay extends Component {
                     </div>
                     {showComments && (
                       <Comments
-                        
                         username={username}
                         admin={admin}
                         foodId={food.id}

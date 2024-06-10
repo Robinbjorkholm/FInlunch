@@ -15,8 +15,9 @@ import Home from "./components/pages/Home";
 import WelcomePopup from "./components/utility/WelcomePopup";
 import FinancialPopup from "./components/utility/FinancialPopup";
 import EmailSent from "./components/pages/EmailSent";
+import "./styles/index.css";
 
-//context to avoid prop drilling 
+//context to avoid prop drilling
 export const HomeContext = createContext();
 
 function App() {

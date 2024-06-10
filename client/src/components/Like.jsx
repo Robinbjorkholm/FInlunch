@@ -33,7 +33,7 @@ function Like({ foodId, UserId, Likes, handleLike }) {
   }
 
   return (
-    <div className="like-button">
+    <div className="flex-row">
       {foodIsLiked ? (
         <BsHeartFill
           color="red"

@@ -64,7 +64,7 @@ const Filtering = ({
             <p className="filter-option-foodtype">Filter </p>
           ) : null}
 
-          <div className="filter-div-map">
+          <div className="filter-order-flex-div">
             {foodTypes
               ? foodTypes.map((food, id) => {
                   return (
@@ -108,31 +108,27 @@ const Filtering = ({
                 })
               : null}
           </div>
+
           {!isMobileNavigation || mobileFilteringActive ? (
-            <p className="filter-option-rating">Order by</p>
-          ) : null}
-          {!isMobileNavigation || mobileFilteringActive ? (
-            <div className="div-filter-rating-text-arrow">
+            <div className="filter-order-flex-div">
+              <p className="order-by-rating">Order by</p>
+
               <button
-                className={
-                  descendingSorting
-                    ? "filter-option-rating-arrows-toggle"
-                    : "filter-option-rating-arrows"
-                }
+                className={`order-by-rating-arrows ${
+                  descendingSorting ? "toggle" : ""
+                }`}
                 onClick={() => handleDescendingSorting()}
               >
-                Rating <AiOutlineArrowDown className="filter-arrow" size={22} />
+                Rating <AiOutlineArrowDown size={22} />
               </button>
 
               <button
-                className={
-                  ascendingSorting
-                    ? "filter-option-rating-arrows-toggle"
-                    : "filter-option-rating-arrows"
-                }
+                className={`order-by-rating-arrows ${
+                  ascendingSorting ? "toggle" : ""
+                }`}
                 onClick={() => handleAscendingSorting()}
               >
-                Rating <AiOutlineArrowUp className="filter-arrow" size={22} />{" "}
+                Rating <AiOutlineArrowUp size={22} />{" "}
               </button>
             </div>
           ) : null}

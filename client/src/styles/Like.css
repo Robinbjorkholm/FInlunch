@@ -2,15 +2,11 @@
   cursor: pointer;
 }
 
-.like-button {
-  display: flex;
-  gap: 0.5rem;
-}
-
 .like {
   margin-top: 0.2rem;
   margin-left: 1rem;
 }
 .like-amount {
   margin-top: 0.4rem;
+  margin-left: 0.4rem;
 }

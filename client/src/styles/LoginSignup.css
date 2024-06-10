@@ -40,13 +40,7 @@
   background: transparent;
   border-bottom: 2px solid #969696;
 }
-.signup-div {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: row;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 
 .signup-href {
   color: blue;
@@ -77,6 +71,7 @@
   transition: all 0.1s;
   width: 50%;
   margin: 0 auto;
+  margin-bottom: 1.5rem;
 }
 
 .login-create-submit-button:hover {

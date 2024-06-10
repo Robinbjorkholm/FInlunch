@@ -13,12 +13,10 @@ function NewFood({ foodTypesDisplay, setfoodFormOpen }) {
   const [foodCost, setfoodCost] = useState(0);
   const [foodCostMeal, setfoodCostMeal] = useState();
 
-
-
   return (
     <div className="create-new-food">
       <form
-        id="food-form"
+        className="flex-column"
         onSubmit={() =>
           createFoodV2(
             foodName,
