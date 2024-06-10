@@ -62,6 +62,7 @@ function Home({}) {
         descendingSorting={descendingSorting}
         ascendingSorting={ascendingSorting}
         setSelectedFoodType={setSelectedFoodType}
+        setmobileFilteringActive={setmobileFilteringActive}
         mobileFilteringActive={mobileFilteringActive}
         navigationRef={navigationRef}
       />

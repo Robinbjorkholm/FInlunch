@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import "./../styles/DropDownMenu.css";
 
 export default function DropDownMenu({ setuserMenu, setfoodFormOpen }) {
-  const {  user, logout } = useContext(HomeContext);
+  const { user, logout } = useContext(HomeContext);
   const [newFoodType, setnewFoodType] = useState("");
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function DropDownMenu({ setuserMenu, setfoodFormOpen }) {
   }, []);
 
   let menu = useRef();
-  
+
   //closes dropdownmenu if user clicks outside (incomplete)
   const closeMenu = (e) => {
     if (!menu.current.contains(e.target)) {

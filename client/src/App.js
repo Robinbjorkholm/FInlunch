@@ -1,7 +1,6 @@
 import { useEffect, useState, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-import Geocode from "react-geocode";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 import Login from "./components/pages/Login";
@@ -13,20 +12,18 @@ import VerifyEmail from "./components/pages/VerifyEmail";
 import PasswordUpdated from "./components/pages/PasswordUpdated";
 import ErrorPage from "./components/pages/ErrorPage";
 import Home from "./components/pages/Home";
-import PopupModal from "./components/utility/PopupModal";
-import PopupModalClosed from "./components/utility/PopupModalClosed";
-
+import WelcomePopup from "./components/utility/WelcomePopup";
+import FinancialPopup from "./components/utility/FinancialPopup";
 import EmailSent from "./components/pages/EmailSent";
 
-//context to avoid prop drilling 😂
+//context to avoid prop drilling 
 export const HomeContext = createContext();
 
 function App() {
   const [user, setUser] = useState("");
-  const [closeModal, setcloseModal] = useState(false);
-  const [closeModalClosed, setcloseModalClosed] = useState(false);
-  const popupCookie = Cookies.get("popupmodalcookie");
-  const popupClosedCookie = Cookies.get("popupclosedcookie");
+  const [closeModalToggle, setcloseModalToggle] = useState(false);
+  const [financialModalToggle, setfinancialModalToggle] = useState(false);
+
   const jwtToken = Cookies.get("jwt");
   if (jwtToken) {
     var decoded = jwt_decode(jwtToken);
@@ -34,18 +31,10 @@ function App() {
 
   useEffect(() => {
     setUser(decoded);
-    setcloseModal(popupCookie);
-    setcloseModalClosed(popupClosedCookie);
+    setcloseModalToggle(Cookies.get("WelcomePopupCookie"));
+    setfinancialModalToggle(Cookies.get("FinancialPopupCookie"));
   }, [jwtToken]);
 
-  function closePopupModal() {
-    Cookies.set("popupmodalcookie", true, { expires: 10 });
-    setcloseModal(Cookies.get("popupmodalcookie"));
-  }
-  function closePopupClosed() {
-    Cookies.set("popupclosedcookie", true, { expires: 10 });
-    setcloseModalClosed(Cookies.get("popupclosedcookie"));
-  }
   //logout user
   function logout() {
     setUser("");
@@ -58,10 +47,12 @@ function App() {
 
   return (
     <div className="App">
-      {!closeModalClosed && (
-        <PopupModalClosed closePopupClosed={closePopupClosed} />
+      {!financialModalToggle && (
+        <FinancialPopup setfinancialModalToggle={setfinancialModalToggle} />
       )}
-      {!closeModal && <PopupModal closePopupModal={closePopupModal} />}
+      {!closeModalToggle && (
+        <WelcomePopup setcloseModalToggle={setcloseModalToggle} />
+      )}
       <Router>
         <HomeContext.Provider value={{ isMobileNavigation, logout, user }}>
           <Routes>

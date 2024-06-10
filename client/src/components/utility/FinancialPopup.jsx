@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import useCookieToggle from "../hooks/useCookiesToggle";
 import "../../styles/PopupModal.css";
 
-function PopupModalClosed({ closePopupClosed }) {
+function FinancialPopup({setfinancialModalToggle}) {
+  const [cookie, setCookie] = useState(false);
+
+  const toggleCookie = useCookieToggle("FinancialPopupCookie", setCookie,setfinancialModalToggle);
+
   return (
     <div className="popup-modal-background">
       <div className="popup-modal">
@@ -12,10 +17,7 @@ function PopupModalClosed({ closePopupClosed }) {
           </p>
         </div>{" "}
         <br />
-        <button
-          className="popup-modal-close-button"
-          onClick={() => closePopupClosed()}
-        >
+        <button className="popup-modal-close-button" onClick={toggleCookie}>
           okay
         </button>
         <br />
@@ -24,4 +26,4 @@ function PopupModalClosed({ closePopupClosed }) {
   );
 }
 
-export default PopupModalClosed;
+export default FinancialPopup;
