@@ -78,9 +78,9 @@
 .filter-food-items {
   word-wrap: break-word;
   max-width: 11rem;
+  margin-bottom: 0.7rem;
 }
 #food-type {
-  padding: 1rem;
   font-size: 1.1rem;
   color: #333;
   cursor: pointer;
@@ -89,7 +89,6 @@
   word-wrap: break-word;
 }
 #food-type-active {
-  padding: 1rem;
   font-size: 1.1rem;
   text-shadow: 0 0 0.01px black;
   cursor: pointer;

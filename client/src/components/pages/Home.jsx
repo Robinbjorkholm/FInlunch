@@ -25,12 +25,12 @@ function Home({}) {
   }, []);
 
   //toggle descendingSorting sorting
-  const handledescendingSorting = () => {
+  const handleDescendingSorting = () => {
     setascendingSorting(false);
     setdescendingSorting(!descendingSorting);
   };
   //toggle ascendingSorting sorting
-  const handleascendingSorting = () => {
+  const handleAscendingSorting = () => {
     setdescendingSorting(false);
     setascendingSorting(!ascendingSorting);
   };
@@ -57,8 +57,8 @@ function Home({}) {
         setfoodFormOpen={setfoodFormOpen}
       />
       <Filtering
-        handledescendingSorting={handledescendingSorting}
-        handleascendingSorting={handleascendingSorting}
+        handleDescendingSorting={handleDescendingSorting}
+        handleAscendingSorting={handleAscendingSorting}
         descendingSorting={descendingSorting}
         ascendingSorting={ascendingSorting}
         setSelectedFoodType={setSelectedFoodType}

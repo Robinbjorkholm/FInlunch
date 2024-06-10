@@ -8,17 +8,19 @@ import "../../styles/Filtering.css";
 
 const Filtering = ({
   setSelectedFoodType,
-  handleDescending,
-  handleAscending,
+  handleDescendingSorting,
+  handleAscendingSorting,
   mobileFilteringActive,
+  ascendingSorting,
+  descendingSorting,
   navigationRef,
   setmobileFilteringActive,
 }) => {
-  const { isMobileNavigation,user } = useContext(HomeContext);
+  const { isMobileNavigation, user } = useContext(HomeContext);
   const [foodTypes, setFoodTypes] = useState([]);
   const [clickedFoodType, setClickedFoodType] = useState("");
-  const [newFoodType, setNewFoodType] = useState("");
   const [foodTypeActive, setFoodTypeActive] = useState(null);
+  const [newFoodType, setNewFoodType] = useState("");
   const [width, setWidth] = useState(window.innerWidth);
   const [Sorting, setSorting] = useState(null);
 
@@ -113,22 +115,22 @@ const Filtering = ({
             <div className="div-filter-rating-text-arrow">
               <button
                 className={
-                  mobileFilteringActive
+                  descendingSorting
                     ? "filter-option-rating-arrows-toggle"
                     : "filter-option-rating-arrows"
                 }
-                onClick={() => handleDescending()}
+                onClick={() => handleDescendingSorting()}
               >
                 Rating <AiOutlineArrowDown className="filter-arrow" size={22} />
               </button>
 
               <button
                 className={
-                  mobileFilteringActive
+                  ascendingSorting
                     ? "filter-option-rating-arrows-toggle"
                     : "filter-option-rating-arrows"
                 }
-                onClick={() => handleAscending()}
+                onClick={() => handleAscendingSorting()}
               >
                 Rating <AiOutlineArrowUp className="filter-arrow" size={22} />{" "}
               </button>
