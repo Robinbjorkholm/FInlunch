@@ -22,7 +22,7 @@ function Comments({
   const [createCommmentLength, setcreateCommentLength] = useState(0);
   const [goToLogin, setgoToLogin] = useState(false);
   const [commentAmount, setcommentAmount] = useState(5);
-
+  console.log(user);
   const CommentSchema = yup.object().shape({
     comment: yup
       .string()
@@ -61,7 +61,6 @@ function Comments({
     let newComments = Comments.filter((comments) => {
       return comments.foodId === foodId;
     });
-    console.log(newComments);
     newComments = Math.max(0, newComments.length - commentAmount);
     return newComments;
   };
@@ -78,7 +77,7 @@ function Comments({
 
   return (
     <div className="comment-section-div">
-      <div >
+      <div>
         <form onSubmit={submitComment}>
           {" "}
           {user ? (
@@ -142,7 +141,7 @@ function Comments({
                   </li>
                   <li>{calculateCommentAge(comment.createdAt)}</li>
 
-                  {UserId === comment.UserId || admin === true ? (
+                  {user.id === comment.UserId || user.admin === true ? (
                     <button
                       className="comment-delete-button"
                       onClick={() => handleDeleteComment(comment, user)}
@@ -156,7 +155,9 @@ function Comments({
             );
           })}{" "}
         <button
-          id="button-load-more-comments"
+          className={`button-load-more-comments ${
+            calculateCommentsLeft(Comments, foodId, commentAmount) == 0 ? "disabled" : ""
+          }`}
           onClick={() => setcommentAmount(commentAmount + 5)}
         >
           Load more Comments (
